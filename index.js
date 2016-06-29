@@ -47,7 +47,6 @@ var AnimationViewModel = require('terriajs/lib/ViewModels/AnimationViewModel');
 var BingMapsSearchProviderViewModel = require('terriajs/lib/ViewModels/BingMapsSearchProviderViewModel');
 var BrandBarViewModel = require('terriajs/lib/ViewModels/BrandBarViewModel');
 var CatalogItemNameSearchProviderViewModel = require('terriajs/lib/ViewModels/CatalogItemNameSearchProviderViewModel');
-var createAustraliaBaseMapOptions = require('terriajs/lib/ViewModels/createAustraliaBaseMapOptions');
 var createGlobalBaseMapOptions = require('terriajs/lib/ViewModels/createGlobalBaseMapOptions');
 var createToolsMenuItem = require('terriajs/lib/ViewModels/createToolsMenuItem');
 var DataCatalogTabViewModel = require('terriajs/lib/ViewModels/DataCatalogTabViewModel');
@@ -79,7 +78,9 @@ var raiseErrorToUser = require('terriajs/lib/Models/raiseErrorToUser');
 var selectBaseMap = require('terriajs/lib/ViewModels/selectBaseMap');
 var defaultValue = require('terriajs-cesium/Source/Core/defaultValue');
 
+var svgInfo = require('terriajs/lib/SvgPaths/svgInfo');
 var svgPlus = require('terriajs/lib/SvgPaths/svgPlus');
+var svgRelated = require('terriajs/lib/SvgPaths/svgRelated');
 var svgShare = require('terriajs/lib/SvgPaths/svgShare');
 var svgWorld = require('terriajs/lib/SvgPaths/svgWorld');
 
@@ -121,6 +122,7 @@ terria.start({
     raiseErrorToUser(terria, e);
 }).always(function() {
     configuration.bingMapsKey = terria.configParameters.bingMapsKey ? terria.configParameters.bingMapsKey : configuration.bingMapsKey;
+    configuration.digitalGlobeApiKey = terria.configParameters.digitalGlobeApiKey;
 
     // Automatically update Terria (load new catalogs, etc.) when the hash part of the URL changes.
     updateApplicationOnHashChange(terria, window);
@@ -133,11 +135,8 @@ terria.start({
     var ui = document.getElementById('ui');
 
     // Create the various base map options.
-    var australiaBaseMaps = createAustraliaBaseMapOptions(terria);
-    var globalBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey);
-
-    var allBaseMaps = australiaBaseMaps.concat(globalBaseMaps);
-    var initialBaseMap = terria.configParameters.initialBaseMap || 'Bing Maps Aerial with Labels';
+    var allBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey, configuration.digitalGlobeApiKey);
+    var initialBaseMap = terria.configParameters.initialBaseMap || 'EOX Terrain';
     selectBaseMap(terria, allBaseMaps, initialBaseMap, true);
 
     // Create the Settings / Map panel.
@@ -150,7 +149,7 @@ terria.start({
 
     var brandBarElements = defaultValue(terria.configParameters.brandBarElements, [
             '',
-            '<a target="_blank" href="http://terria.io"><img src="images/terria_logo.png" height="52" title="Version: {{ version }}" /></a>',
+            '<a target="_blank" href="http://www.leylines.ch/"><img src="images/leylines-logo.svg" height="68" alt="maps.leylines.ch" title="Version: ' + version + '"/></a>',
             ''
         ]);
     brandBarElements = brandBarElements.map(function(s) { return s.replace(/\{\{\s*version\s*\}\}/, version);});
@@ -201,10 +200,10 @@ terria.start({
                         terria: terria
                     });
                 }
-            })/*,
+            }),
             new MenuBarItemViewModel({
                 label: 'Related Maps',
-                tooltip: 'View other maps in the NationalMap family.',
+                tooltip: 'View other maps in the leylines.ch family.',
                 svgPath: svgRelated,
                 svgPathWidth: 14,
                 svgPathHeight: 13,
@@ -216,7 +215,16 @@ terria.start({
                         height: 430
                     });
                 }
-            })*/
+            }),
+            new MenuBarItemViewModel({
+                label: 'About',
+                tooltip: 'About www.leylines.ch.',
+                svgPath: svgInfo,
+                svgPathWidth: 18,
+                svgPathHeight: 18,
+                svgFillRule: 'evenodd',
+                href: 'http://www.leylines.ch/#about'
+            })
         ]
     });
 
