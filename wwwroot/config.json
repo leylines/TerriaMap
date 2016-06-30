@@ -1,28 +1,27 @@
 {
     "initializationUrls" : [
-        "terria",
-        "test"
+        "leylines"
     ],
     "parameters": {
-        "bingMapsKey": "AkaOmRFtjAb71cXgLwAGtLbj2RpkPKtVqAIroFQsocfurCBILxIeAWPkil7hhRy_",
+        "bingMapsKey": "Ar2EmKvPSqMPwjLanIEHgtO-r8h0cBPrP2D0Rx_Ejqy22LvRl4UvqZor1xSTtq4G",
+        "digitalGlobeApiKey": "pk.eyJ1IjoiZGlnaXRhbGdsb2JlIiwiYSI6ImNpcDVrcXowNjAwaTN1Ym01eHU5OGxwNXYifQ.ycz_Z8TJDSBOc6-_cTJCLQ",
+	"urthecastApiKey": "CDF7911468AF4C92BBA1",
+	"urthecastApiSecret": "540EB50E9E5A4C11916656568DA47F21",
+
+	"requestWaterMask": true,
+
         "googleUrlShortenerKey": null,
         "googleAnalyticsKey": null,
         "googleAnalyticsOptions": null,
         "disclaimer": {
-            "text": "Disclaimer: This map must not be used for navigation or precise spatial analysis",
-            "url": ""
+            "text": "Disclaimer: leylines.ch must not be used for navigation or precise spatial analysis",
+            "url": "http://www.leylines.ch/#about"
         },
-        "developerAttribution-CHANGETHIS": {
-            "text": "Your organisation",
-            "link": "http://www.example.com"
+        "developerAttribution": {
+            "text": "Joerg Roth",
+            "link": "http://www.leylines.ch"
         },
-        "appName": "Terria Map",
-        "supportEmail-CHANGETHIS": "help@example.com",
-        "brandBarElements": [
-            "",
-            "<a target=\"_blank\" href=\"http://www.nicta.com.au\"><img src=\"images/terria_logo.png\" height=\"52\" title=\"Version: {{version}}\" /></a>",
-            ""
-        ]
+        "appName": "leylines",
+        "supportEmail": "info@leylines.ch"
     }
 }
-
