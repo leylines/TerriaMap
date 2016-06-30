@@ -8,7 +8,7 @@ var config = {
     entry: './index.js',
     output: {
         path: 'wwwroot/build',
-        filename: 'TerriaMap.js',
+        filename: 'leylines.js',
         publicPath: 'build/',
         sourcePrefix: '' // to avoid breaking multi-line string literals by inserting extra tabs.
     },

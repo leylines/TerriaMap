@@ -4,7 +4,9 @@
 // Every module required-in here must be a `dependency` in package.json, not just a `devDependency`,
 // This matters if ever we have gulp tasks run from npm, especially post-install ones.
 var gulp = require('gulp');
+var jsoncombine = require('gulp-jsoncombine');
 var gutil = require('gulp-util');
+var symlink = require('gulp-symlink');
 var path = require('path');
 
 var minNode = require('./package.json').engines.node;
@@ -14,15 +16,49 @@ if (!require('semver').satisfies(process.version, minNode)) {
     process.exit();
 }
 
-
-gulp.task('build', ['build-css', 'copy-terriajs-assets', 'build-app']);
+gulp.task('build', ['build-css', 'merge-datasources', 'copy-terriajs-assets', 'build-app']);
 gulp.task('release', ['build-css', 'copy-terriajs-assets', 'release-app', 'make-editor-schema']);
 gulp.task('watch', ['watch-css', 'watch-terriajs-assets', 'watch-app']);
-gulp.task('default', ['lint', 'build']);
+gulp.task('default', ['make-symlinks', 'inject-files', 'lint', 'build']);
 
 var watchOptions = {
     interval: 1000
 };
+
+gulp.task('inject-files', function(done) {
+    gulp.src([
+            '../build-data/images/**'
+        ], { base: '../build-data/images' })
+    .pipe(gulp.dest('wwwroot/images'));
+    return;
+});
+
+gulp.task('make-symlinks', function () {
+    gulp.src('wwwroot/images')
+      .pipe(symlink('wwwroot/build/TerriaJS/images-leylines',{force: true}))
+    gulp.src('node_modules/terriajs/wwwroot/doc')
+      .pipe(symlink('wwwroot/html/doc',{force: true}))
+    gulp.src('../www')
+      .pipe(symlink('www',{force: true}))
+    return;
+});
+
+gulp.task('merge-datasources', function() {
+    var jsonspacing=0;
+    gulp.src("../build-data/datasources-prod/*.json")
+        .pipe(jsoncombine("leylines.json", function(data) {
+        // be absolutely sure we have the files in alphabetical order, with 000_settings first.
+        var keys = Object.keys(data).slice().sort();
+        data[keys[0]].catalog = [];
+
+        for (var i = 1; i < keys.length; i++) {
+            data[keys[0]].catalog.push(data[keys[i]].catalog[0]);
+        }
+        return new Buffer(JSON.stringify(data[keys[0]], null, jsonspacing));
+    }))
+    .pipe(gulp.dest("./wwwroot/init"));
+    return;
+});
 
 gulp.task('build-app', ['write-version'], function(done) {
     var runWebpack = require('terriajs/buildprocess/runWebpack.js');
@@ -68,7 +104,7 @@ gulp.task('build-css', function() {
                 new NpmImportPlugin()
             ]
         }))
-        .pipe(rename('TerriaMap.css'))
+        .pipe(rename('leylines.css'))
         .pipe(gulp.dest('./wwwroot/build/'));
 });
 
@@ -129,14 +165,17 @@ gulp.task('lint', function() {
 
 gulp.task('write-version', function() {
     var fs = require('fs');
+    var dateFormat = require('dateformat');
     var spawnSync = require('child_process').spawnSync;
 
     // Get a version string from "git describe".
-    var version = spawnSync('git', ['describe']).stdout.toString().trim();
-    var isClean = spawnSync('git', ['status', '--porcelain']).stdout.toString().length === 0;
-    if (!isClean) {
-        version += ' (plus local modifications)';
-    }
+    //var version = spawnSync('git', ['describe']).stdout.toString().trim();
+    //var isClean = spawnSync('git', ['status', '--porcelain']).stdout.toString().length === 0;
+    //if (!isClean) {
+    //    version += ' (plus local modifications)';
+    //}
+    var currentTime = new Date();
+    var version = dateFormat(currentTime, "isoDateTime");
 
     fs.writeFileSync('version.js', 'module.exports = \'' + version + '\';');
 });
