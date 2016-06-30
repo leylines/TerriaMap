@@ -11,9 +11,6 @@
     "type": "git",
     "url": "http://github.com/leylines/leylines"
   },
-  "dependencies": {
-    "pg": ""
-  },
   "devDependencies": {
     "babel-eslint": "^6.0.2",
     "dateformat": "",
