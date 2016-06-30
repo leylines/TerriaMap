@@ -1,20 +1,24 @@
 {
-  "name": "terriajs-map",
-  "version": "0.0.1",
-  "description": "Geospatial catalog explorer based on TerriaJS",
+  "name": "leylines",
+  "version": "3.0.0",
+  "description": "Geospatial visualization application for leylines.ch and open data.",
   "engines" : { 
     "node" : ">= 5.1.0", 
     "npm":  ">= 3.0.0"
   },
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/TerriaJS/map"
+    "url": "http://github.com/leylines/leylines"
   },
   "dependencies": {
-    "terriajs-server": "^2.1.0"
+    "pg": "",
+    "terriajs-server": "^2.1.0",
+    "vhost": ""
   },
   "devDependencies": {
     "babel-eslint": "^6.0.2",
+    "dateformat": "",
     "eslint": "^2.7.0",
     "generate-terriajs-schema": "^1.2.1",
     "glob-all": "^3.0.1",
@@ -23,6 +27,7 @@
     "gulp-less": "^3.0.5",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-symlink": "",
     "gulp-util": "^3.0.7",
     "less": "^2.6.1",
     "less-plugin-npm-import": "^2.1.0",
