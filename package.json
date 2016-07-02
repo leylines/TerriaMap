@@ -31,6 +31,9 @@
     "semver": "^5.0.0",
     "terriajs-catalog-editor": "^0.2.0",
     "terriajs-schema": "latest",
+    "terriajs-server" : "git://github.com/leylines/terriajs-server.git#master",
+    "terriajs-cesium" : "1.20.0",
+    "terriajs" : "git://github.com/leylines/terriajs.git#master",
     "webpack": "^1.12.14"
   },
   "scripts": {

@@ -30,16 +30,16 @@ gulp.task('inject-files', function(done) {
             '../build-data/images/**'
         ], { base: '../build-data/images' })
     .pipe(gulp.dest('wwwroot/images'));
+    gulp.src([
+            '../build-data/cesium-js/*.js'
+        ], { base: '../build-data/cesium-js' })
+    .pipe(gulp.dest('node_modules/terriajs-cesium/Source/DataSources'));
     return;
 });
 
 gulp.task('make-symlinks', function () {
-    gulp.src('wwwroot/images')
-      .pipe(symlink('wwwroot/build/TerriaJS/images-leylines',{force: true}))
     gulp.src('node_modules/terriajs/wwwroot/doc')
       .pipe(symlink('wwwroot/html/doc',{force: true}))
-    gulp.src('../www')
-      .pipe(symlink('www',{force: true}))
     return;
 });
 
