@@ -1,20 +1,22 @@
 {
   "name": "leylines",
-  "version": "3.0.0",
-  "description": "Geospatial visualization application for leylines.ch and open data.",
-  "engines" : { 
-    "node" : ">= 5.1.0", 
-    "npm":  ">= 3.0.0"
+  "version": "0.0.1",
+  "description": "Geospatial catalog explorer based on TerriaJS for maps.leylines.ch",
+  "engines": {
+    "node": ">= 5.1.0",
+    "npm": ">= 3.0.0"
   },
-  "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/leylines/leylines"
+    "url": "http://github.com/leylines/leylinesMap"
+  },
+  "dependencies": {
+    "terriajs-server": "git://github.com/leylines/terriajs-server.git#master"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.2",
     "dateformat": "",
-    "eslint": "^2.7.0",
+    "eslint": "^3.0.1",
     "generate-terriajs-schema": "^1.2.1",
     "glob-all": "^3.0.1",
     "gulp": "^3.9.1",
@@ -29,11 +31,10 @@
     "node-notifier": "^4.5.0",
     "raw-loader": "^0.5.1",
     "semver": "^5.0.0",
+    "terriajs": "git://github.com/leylines/terriajs.git#master",
     "terriajs-catalog-editor": "^0.2.0",
+    "terriajs-cesium": "1.20.1",
     "terriajs-schema": "latest",
-    "terriajs-server" : "git://github.com/leylines/terriajs-server.git#master",
-    "terriajs-cesium" : "1.20.0",
-    "terriajs" : "git://github.com/leylines/terriajs.git#newui",
     "webpack": "^1.12.14"
   },
   "scripts": {
