@@ -6,7 +6,6 @@
 var gulp = require('gulp');
 var jsoncombine = require('gulp-jsoncombine');
 var gutil = require('gulp-util');
-var symlink = require('gulp-symlink');
 var path = require('path');
 
 var minNode = require('./package.json').engines.node;
@@ -19,7 +18,7 @@ if (!require('semver').satisfies(process.version, minNode)) {
 gulp.task('build', ['build-css', 'merge-datasources', 'copy-terriajs-assets', 'build-app']);
 gulp.task('release', ['build-css', 'copy-terriajs-assets', 'release-app', 'make-editor-schema']);
 gulp.task('watch', ['watch-css', 'watch-terriajs-assets', 'watch-app']);
-gulp.task('default', ['make-symlinks', 'inject-files', 'lint', 'build']);
+gulp.task('default', ['inject-files', 'lint', 'build']);
 
 var watchOptions = {
     interval: 1000
@@ -34,12 +33,6 @@ gulp.task('inject-files', function(done) {
             '../build-data/cesium-js/*.js'
         ], { base: '../build-data/cesium-js' })
     .pipe(gulp.dest('node_modules/terriajs-cesium/Source/DataSources'));
-    return;
-});
-
-gulp.task('make-symlinks', function () {
-    gulp.src('node_modules/terriajs/wwwroot/doc')
-      .pipe(symlink('wwwroot/html/doc',{force: true}))
     return;
 });
 
