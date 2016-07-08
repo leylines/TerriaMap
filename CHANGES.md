@@ -12,6 +12,9 @@ Change Log
             "enableOnLocalhost": true     // By default, Disclaimers are not shown when testing locally. Add this to test your disclaimer.
         },
 
+### 2016-07-15
+
+* Catalog (init) files can now be stored as .ejs files in /datasources, rendered by the EJS templating library. See comments in gulpfile.js.
 
 ### 2016-05-13b
 

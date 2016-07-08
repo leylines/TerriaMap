@@ -7,9 +7,7 @@
         "digitalGlobeApiKey": "pk.eyJ1IjoiZGlnaXRhbGdsb2JlIiwiYSI6ImNpcDVrcXowNjAwaTN1Ym01eHU5OGxwNXYifQ.ycz_Z8TJDSBOc6-_cTJCLQ",
 	"urthecastApiKey": "CDF7911468AF4C92BBA1",
 	"urthecastApiSecret": "540EB50E9E5A4C11916656568DA47F21",
-
-	"requestWaterMask": true,
-
+        "feedbackUrl": "feedback",
         "googleUrlShortenerKey": null,
         "googleAnalyticsKey": null,
         "googleAnalyticsOptions": null,
@@ -17,11 +15,10 @@
             "text": "Disclaimer: leylines.ch must not be used for navigation or precise spatial analysis",
             "url": "http://www.leylines.ch/#about"
         },
-<<<<<<< HEAD
         "developerAttribution": {
             "text": "Joerg Roth",
             "link": "http://www.leylines.ch"
-=======
+        },
         "globalDisclaimer": {
             "confirmationRequired": true,
             "buttonTitle": "I agree",
@@ -30,12 +27,18 @@
             "devHostRegex-OPTIONAL": "\\b(staging|preview|test|dev)\\.",
             "enableOnLocalhost": false
         },
-        "developerAttribution-CHANGETHIS": {
-            "text": "Your organisation",
-            "link": "http://www.example.com"
->>>>>>> upstream/master
+        "printDisclaimer-CHANGETHIS":{
+            "text":"Put your print disclaimer here.",
+            "url": "#"
         },
         "appName": "leylines",
         "supportEmail": "info@leylines.ch"
+        "appName": "Terria Map",
+        "supportEmail-CHANGETHIS": "help@example.com",
+        "brandBarElements": [
+            "",
+            "<a target=\"_blank\" href=\"http://www.nicta.com.au\"><img src=\"images/terria_logo.png\" height=\"52\" title=\"Version: {{version}}\" /></a>",
+            ""
+        ]
     }
 }

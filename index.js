@@ -1,116 +1,80 @@
-/**
- * @license
- * Copyright(c) 2012-2015 National ICT Australia Limited (NICTA).
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 'use strict';
 
 /*global require*/
-
 var version = require('./version');
 
 var terriaOptions = {
     baseUrl: 'build/TerriaJS'
 };
 var configuration = {
-    bingMapsKey: undefined // use Cesium key
+    bingMapsKey: undefined, // use Cesium key
 };
+
+require('./TerriaMap.scss');
 
 // Check browser compatibility early on.
 // A very old browser (e.g. Internet Explorer 8) will fail on requiring-in many of the modules below.
 // 'ui' is the name of the DOM element that should contain the error popup if the browser is not compatible
-var checkBrowserCompatibility = require('terriajs/lib/ViewModels/checkBrowserCompatibility');
-checkBrowserCompatibility('ui');
+//var checkBrowserCompatibility = require('terriajs/lib/ViewModels/checkBrowserCompatibility');
 
-var knockout = require('terriajs-cesium/Source/ThirdParty/knockout');
+// checkBrowserCompatibility('ui');
 
-var isCommonMobilePlatform = require('terriajs/lib/Core/isCommonMobilePlatform');
-var TerriaViewer = require('terriajs/lib/ViewModels/TerriaViewer');
-var registerKnockoutBindings = require('terriajs/lib/Core/registerKnockoutBindings');
-var GoogleAnalytics = require('terriajs/lib/Core/GoogleAnalytics');
+import GoogleAnalytics from 'terriajs/lib/Core/GoogleAnalytics';
+import GoogleUrlShortener from 'terriajs/lib/Models/GoogleUrlShortener';
+import isCommonMobilePlatform from 'terriajs/lib/Core/isCommonMobilePlatform';
+import OgrCatalogItem from 'terriajs/lib/Models/OgrCatalogItem';
+import raiseErrorToUser from 'terriajs/lib/Models/raiseErrorToUser';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import registerAnalytics from 'terriajs/lib/Models/registerAnalytics';
+import registerCatalogMembers from 'terriajs/lib/Models/registerCatalogMembers';
+import registerCustomComponentTypes from 'terriajs/lib/Models/registerCustomComponentTypes';
+import registerKnockoutBindings from 'terriajs/lib/Core/registerKnockoutBindings';
+import Terria from 'terriajs/lib/Models/Terria';
+import updateApplicationOnHashChange from 'terriajs/lib/ViewModels/updateApplicationOnHashChange';
+import updateApplicationOnMessageFromParentWindow from 'terriajs/lib/ViewModels/updateApplicationOnMessageFromParentWindow';
+import ViewState from 'terriajs/lib/ReactViewModels/ViewState';
+import BingMapsSearchProviderViewModel from 'terriajs/lib/ViewModels/BingMapsSearchProviderViewModel.js';
+import GazetteerSearchProviderViewModel from 'terriajs/lib/ViewModels/GazetteerSearchProviderViewModel.js';
+import GNAFSearchProviderViewModel from 'terriajs/lib/ViewModels/GNAFSearchProviderViewModel.js';
 
-var AddDataPanelViewModel = require('terriajs/lib/ViewModels/AddDataPanelViewModel');
-var AnimationViewModel = require('terriajs/lib/ViewModels/AnimationViewModel');
-var BingMapsSearchProviderViewModel = require('terriajs/lib/ViewModels/BingMapsSearchProviderViewModel');
-var BrandBarViewModel = require('terriajs/lib/ViewModels/BrandBarViewModel');
-var CatalogItemNameSearchProviderViewModel = require('terriajs/lib/ViewModels/CatalogItemNameSearchProviderViewModel');
-var createGlobalBaseMapOptions = require('terriajs/lib/ViewModels/createGlobalBaseMapOptions');
-var createToolsMenuItem = require('terriajs/lib/ViewModels/createToolsMenuItem');
-var DataCatalogTabViewModel = require('terriajs/lib/ViewModels/DataCatalogTabViewModel');
-var DistanceLegendViewModel = require('terriajs/lib/ViewModels/DistanceLegendViewModel');
-var DragDropViewModel = require('terriajs/lib/ViewModels/DragDropViewModel');
-var ExplorerPanelViewModel = require('terriajs/lib/ViewModels/ExplorerPanelViewModel');
-var FeatureInfoPanelViewModel = require('terriajs/lib/ViewModels/FeatureInfoPanelViewModel');
-var GazetteerSearchProviderViewModel = require('terriajs/lib/ViewModels/GazetteerSearchProviderViewModel');
-var GNAFSearchProviderViewModel = require('terriajs/lib/ViewModels/GNAFSearchProviderViewModel.js');
-var GoogleUrlShortener = require('terriajs/lib/Models/GoogleUrlShortener');
-var LocationBarViewModel = require('terriajs/lib/ViewModels/LocationBarViewModel');
-var MenuBarItemViewModel = require('terriajs/lib/ViewModels/MenuBarItemViewModel');
-var MenuBarViewModel = require('terriajs/lib/ViewModels/MenuBarViewModel');
-var MutuallyExclusivePanels = require('terriajs/lib/ViewModels/MutuallyExclusivePanels');
-var NavigationViewModel = require('terriajs/lib/ViewModels/NavigationViewModel');
-var NowViewingAttentionGrabberViewModel = require('terriajs/lib/ViewModels/NowViewingAttentionGrabberViewModel');
-var NowViewingTabViewModel = require('terriajs/lib/ViewModels/NowViewingTabViewModel');
-var PopupMessageViewModel = require('terriajs/lib/ViewModels/PopupMessageViewModel');
-var PopupMessageConfirmationViewModel = require('terriajs/lib/ViewModels/PopupMessageConfirmationViewModel');
-var SearchTabViewModel = require('terriajs/lib/ViewModels/SearchTabViewModel');
-var SettingsPanelViewModel = require('terriajs/lib/ViewModels/SettingsPanelViewModel');
-var SharePopupViewModel = require('terriajs/lib/ViewModels/SharePopupViewModel');
-var MapProgressBarViewModel = require('terriajs/lib/ViewModels/MapProgressBarViewModel');
-var updateApplicationOnHashChange = require('terriajs/lib/ViewModels/updateApplicationOnHashChange');
-var updateApplicationOnMessageFromParentWindow = require('terriajs/lib/ViewModels/updateApplicationOnMessageFromParentWindow');
-var DisclaimerViewModel = require('terriajs/lib/ViewModels/DisclaimerViewModel');
+import AboutButton from './lib/Views/AboutButton';
+import RelatedMaps from './lib/Views/RelatedMaps';
 
-var Terria = require('terriajs/lib/Models/Terria');
-var registerCatalogMembers = require('terriajs/lib/Models/registerCatalogMembers');
-var raiseErrorToUser = require('terriajs/lib/Models/raiseErrorToUser');
-var selectBaseMap = require('terriajs/lib/ViewModels/selectBaseMap');
-var defaultValue = require('terriajs-cesium/Source/Core/defaultValue');
-var defined = require('terriajs-cesium/Source/Core/defined');
-
-var svgInfo = require('terriajs/lib/SvgPaths/svgInfo');
-var svgPlus = require('terriajs/lib/SvgPaths/svgPlus');
-var svgRelated = require('terriajs/lib/SvgPaths/svgRelated');
-var svgShare = require('terriajs/lib/SvgPaths/svgShare');
-var svgWorld = require('terriajs/lib/SvgPaths/svgWorld');
+// Tell the OGR catalog item where to find its conversion service.  If you're not using OgrCatalogItem you can remove this.
+OgrCatalogItem.conversionServiceBaseUrl = configuration.conversionServiceBaseUrl;
 
 // Register custom Knockout.js bindings.  If you're not using the TerriaJS user interface, you can remove this.
 registerKnockoutBindings();
+
 
 // Register all types of catalog members in the core TerriaJS.  If you only want to register a subset of them
 // (i.e. to reduce the size of your application if you don't actually use them all), feel free to copy a subset of
 // the code in the registerCatalogMembers function here instead.
 registerCatalogMembers();
+registerAnalytics();
 
 terriaOptions.analytics = new GoogleAnalytics();
 
 // Construct the TerriaJS application, arrange to show errors to the user, and start it up.
 var terria = new Terria(terriaOptions);
 
-terria.error.addEventListener(function(e) {
-    PopupMessageViewModel.open('ui', {
-        title: e.title,
-        message: e.message
-    });
-});
+// Register custom components in the core TerriaJS.  If you only want to register a subset of them, or to add your own,
+// insert your custom version of the code in the registerCustomComponentTypes function here instead.
+registerCustomComponentTypes(terria);
 
-DisclaimerViewModel.create({
-    container: 'ui',
+terria.welcome = '<h3>Terria<sup>TM</sup> is a spatial data platform that provides spatial predictive analytics</h3><div class="body-copy"><p>This interactive map uses TerriaJS<sup>TM</sup>, an open source software library developed by Data61 for building rich, web-based geospatial data explorers.  It uses Cesium<sup>TM</sup> open source 3D globe viewing software.  TerriaJS<sup>TM</sup> is used for the official Australian Government NationalMap and many other sites rich in the use of spatial data.</p><p>This map also uses Terria<sup>TM</sup> Inference Engine, a cloud-based platform for making probabilistic predictions using data in a web-based mapping environment. Terria<sup>TM</sup> Inference Engine uses state of the art machine learning algorithms developed by Data61 and designed specifically for large-scale spatial inference.</p></div>';
+
+// Create the ViewState before terria.start so that errors have somewhere to go.
+const viewState = new ViewState({
     terria: terria
 });
+
+// If we're running in dev mode, disable the built style sheet as we'll be using the webpack style loader.
+// Note that if the first stylesheet stops being nationalmap.css then this will have to change.
+if (process.env.NODE_ENV !== "production" && module.hot) {
+    document.styleSheets[0].disabled = true;
+}
 
 terria.start({
     // If you don't want the user to be able to control catalog loading via the URL, remove the applicationUrl property below
@@ -124,6 +88,7 @@ terria.start({
 }).otherwise(function(e) {
     raiseErrorToUser(terria, e);
 }).always(function() {
+<<<<<<< HEAD
     configuration.bingMapsKey = terria.configParameters.bingMapsKey ? terria.configParameters.bingMapsKey : configuration.bingMapsKey;
     configuration.digitalGlobeApiKey = terria.configParameters.digitalGlobeApiKey;
 
@@ -370,5 +335,84 @@ terria.start({
                 PopupMessageViewModel.open(ui, options);
             }
         }
+
+    try {
+        configuration.bingMapsKey = terria.configParameters.bingMapsKey ? terria.configParameters.bingMapsKey : configuration.bingMapsKey;
+
+        viewState.searchState.locationSearchProviders = [
+            new BingMapsSearchProviderViewModel({
+                terria: terria,
+                key: configuration.bingMapsKey
+            }),
+            new GazetteerSearchProviderViewModel({terria}),
+            new GNAFSearchProviderViewModel({terria})
+        ];
+
+        // Automatically update Terria (load new catalogs, etc.) when the hash part of the URL changes.
+        updateApplicationOnHashChange(terria, window);
+        updateApplicationOnMessageFromParentWindow(terria, window);
+
+        //temp
+        var createAustraliaBaseMapOptions = require('terriajs/lib/ViewModels/createAustraliaBaseMapOptions');
+        var createGlobalBaseMapOptions = require('terriajs/lib/ViewModels/createGlobalBaseMapOptions');
+        var selectBaseMap = require('terriajs/lib/ViewModels/selectBaseMap');
+        // Create the various base map options.
+        var australiaBaseMaps = createAustraliaBaseMapOptions(terria);
+        var globalBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey);
+
+        var allBaseMaps = australiaBaseMaps.concat(globalBaseMaps);
+        selectBaseMap(terria, allBaseMaps, 'Bing Maps Aerial with Labels', true);
+
+        const customElements = {
+            mapTop: [<RelatedMaps viewState={viewState}/>, <AboutButton />]
+        };
+
+        let render = () => {
+            const StandardUserInterface = require('terriajs/lib/ReactViews/StandardUserInterface/StandardUserInterface.jsx');
+            ReactDOM.render((
+                <StandardUserInterface
+                    terria={terria}
+                    allBaseMaps={allBaseMaps}
+                    viewState={viewState}
+                    version={version}
+                    customElements={customElements}
+                />
+            ), document.getElementById('ui'));
+        };
+
+
+        if (process.env.NODE_ENV === "development") {
+            window.viewState = viewState;
+        }
+
+        if (module.hot && process.env.NODE_ENV !== "production") {
+            // Support hot reloading of components
+            // and display an overlay for runtime errors
+            const renderApp = render;
+            const renderError = (error) => {
+                const RedBox = require('redbox-react');
+                console.error(error);
+                console.error(error.stack);
+                ReactDOM.render(
+                    <RedBox error={error} />,
+                    document.getElementById('ui')
+                );
+            };
+            render = () => {
+                try {
+                    renderApp();
+                } catch (error) {
+                    renderError(error);
+                }
+            };
+            module.hot.accept('terriajs/lib/ReactViews/StandardUserInterface/StandardUserInterface.jsx', () => {
+                setTimeout(render);
+            });
+        }
+
+        render();
+    } catch (e) {
+        console.error(e);
+        console.error(e.stack);
     }
 });
