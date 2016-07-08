@@ -33,7 +33,7 @@
     "terriajs-schema": "latest",
     "terriajs-server" : "git://github.com/leylines/terriajs-server.git#master",
     "terriajs-cesium" : "1.20.0",
-    "terriajs" : "git://github.com/leylines/terriajs.git#master",
+    "terriajs" : "git://github.com/leylines/terriajs.git#newui",
     "webpack": "^1.12.14"
   },
   "scripts": {
