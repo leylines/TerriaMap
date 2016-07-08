@@ -8,8 +8,6 @@
 	"urthecastApiKey": "CDF7911468AF4C92BBA1",
 	"urthecastApiSecret": "540EB50E9E5A4C11916656568DA47F21",
 
-	"requestWaterMask": true,
-
         "googleUrlShortenerKey": null,
         "googleAnalyticsKey": null,
         "googleAnalyticsOptions": null,
