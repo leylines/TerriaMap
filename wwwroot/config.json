@@ -17,11 +17,6 @@
             "text": "Disclaimer: leylines.ch must not be used for navigation or precise spatial analysis",
             "url": "http://www.leylines.ch/#about"
         },
-<<<<<<< HEAD
-        "developerAttribution": {
-            "text": "Joerg Roth",
-            "link": "http://www.leylines.ch"
-=======
         "globalDisclaimer": {
             "confirmationRequired": true,
             "buttonTitle": "I agree",
@@ -30,10 +25,9 @@
             "devHostRegex-OPTIONAL": "\\b(staging|preview|test|dev)\\.",
             "enableOnLocalhost": false
         },
-        "developerAttribution-CHANGETHIS": {
-            "text": "Your organisation",
-            "link": "http://www.example.com"
->>>>>>> upstream/master
+        "developerAttribution": {
+            "text": "Joerg Roth",
+            "link": "http://www.leylines.ch"
         },
         "appName": "leylines",
         "supportEmail": "info@leylines.ch"
