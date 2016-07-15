@@ -26,10 +26,10 @@ function RelatedMaps(props) {
             <div className={classNames(DropdownStyles.section, Styles.section)}>
                 <a target="_blank" href="http://megalithic.co.uk/">
                     <img className={Styles.image} src={require('../../wwwroot/images/megalithic/megalithic_logo_150.gif')}
-                         width="150" height="150" alt="megalithic.co.uk"/>
+                         alt="megalithic.co.uk"/>
                 </a>
 
-                <a target="_blank" className={Styles.link} href="http://megalithic.co.uk/">AREMI</a>
+                <a target="_blank" className={Styles.link} href="http://megalithic.co.uk/">megalithic.co.uk</a>
 
                 <p>
                     The top destination for Megaliths and Prehistory worldwide. World-wide Ancient Site Database,

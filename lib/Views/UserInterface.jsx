@@ -4,6 +4,8 @@ import version from '../../version';
 
 import StandardUserInterface from 'terriajs/lib/ReactViews/StandardUserInterface/StandardUserInterface.jsx';
 import MenuItem from 'terriajs/lib/ReactViews/StandardUserInterface/customizable/MenuItem';
+import RelatedMaps from './RelatedMaps';
+import About from './AboutButton';
 import MenuPanel from 'terriajs/lib/ReactViews/StandardUserInterface/customizable/MenuPanel';
 import { Menu } from 'terriajs/lib/ReactViews/StandardUserInterface/customizable/Groups';
 
@@ -13,10 +15,8 @@ export default function UserInterface(props) {
     return (
         <StandardUserInterface {... props} version={version}>
             <Menu>
-                <MenuItem caption="About" href="about.html" key="about-link"/>
-                <MenuPanel btnText="Custom Panel">
-                    <h1>This is a custom panel!</h1>
-                </MenuPanel>
+                <RelatedMaps viewState={props.viewState} />
+                <About viewState={props.viewState} />
             </Menu>
         </StandardUserInterface>
     );
