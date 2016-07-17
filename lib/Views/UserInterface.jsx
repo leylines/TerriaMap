@@ -5,7 +5,6 @@ import version from '../../version';
 import StandardUserInterface from 'terriajs/lib/ReactViews/StandardUserInterface/StandardUserInterface.jsx';
 import MenuItem from 'terriajs/lib/ReactViews/StandardUserInterface/customizable/MenuItem';
 import RelatedMaps from './RelatedMaps';
-import About from './AboutButton';
 import MenuPanel from 'terriajs/lib/ReactViews/StandardUserInterface/customizable/MenuPanel';
 import { Menu } from 'terriajs/lib/ReactViews/StandardUserInterface/customizable/Groups';
 
@@ -16,7 +15,7 @@ export default function UserInterface(props) {
         <StandardUserInterface {... props} version={version}>
             <Menu>
                 <RelatedMaps viewState={props.viewState} />
-                <About viewState={props.viewState} />
+                <MenuItem caption="About" href="http://www.leylines.ch/index.html#about" key="about-link"/>
             </Menu>
         </StandardUserInterface>
     );

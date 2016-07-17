@@ -41,6 +41,8 @@ gulp.task('inject-files', function(done) {
 gulp.task('make-symlinks', function () {
     gulp.src('node_modules/terriajs/wwwroot/doc')
       .pipe(symlink('wwwroot/html/doc',{force: true}))
+    gulp.src('../geo-data')
+      .pipe(symlink('wwwroot/geo-data',{force: true}))
     return;
 });
 
