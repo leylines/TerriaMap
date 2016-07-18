@@ -3,17 +3,21 @@
         "leylines"
     ],
     "parameters": {
+        //"feedbackUrl": "feedback",
         "bingMapsKey": "Ar2EmKvPSqMPwjLanIEHgtO-r8h0cBPrP2D0Rx_Ejqy22LvRl4UvqZor1xSTtq4G",
         "digitalGlobeApiKey": "pk.eyJ1IjoiZGlnaXRhbGdsb2JlIiwiYSI6ImNpcDVrcXowNjAwaTN1Ym01eHU5OGxwNXYifQ.ycz_Z8TJDSBOc6-_cTJCLQ",
-	"urthecastApiKey": "CDF7911468AF4C92BBA1",
-	"urthecastApiSecret": "540EB50E9E5A4C11916656568DA47F21",
-
+        "urthecastApiKey": "CDF7911468AF4C92BBA1",
+        "urthecastApiSecret": "540EB50E9E5A4C11916656568DA47F21",
         "googleUrlShortenerKey": null,
-        "googleAnalyticsKey": null,
+        "googleAnalyticsKey": "UA-80868684-1",
         "googleAnalyticsOptions": null,
         "disclaimer": {
             "text": "Disclaimer: leylines.ch must not be used for navigation or precise spatial analysis",
             "url": "http://www.leylines.ch/#about"
+        },
+        "developerAttribution": {
+            "text": "Joerg Roth",
+            "link": "http://www.leylines.ch"
         },
         "globalDisclaimer": {
             "confirmationRequired": true,
@@ -23,11 +27,16 @@
             "devHostRegex-OPTIONAL": "\\b(staging|preview|test|dev)\\.",
             "enableOnLocalhost": false
         },
-        "developerAttribution": {
-            "text": "Joerg Roth",
-            "link": "http://www.leylines.ch"
+        "printDisclaimer-CHANGETHIS":{
+            "text":"Put your print disclaimer here.",
+            "url": "#"
         },
         "appName": "leylines",
-        "supportEmail": "info@leylines.ch"
+        "supportEmail": "info@leylines.ch",
+        "brandBarElements": [
+            "",
+            "<a target=\"_blank\" href=\"http://www.leylines.ch\"><img src=\"images/leylines-logo.svg\" height=\"52\" title=\"Version: {{version}}\" /></a>",
+            ""
+        ]
     }
 }
