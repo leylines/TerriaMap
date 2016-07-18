@@ -15,9 +15,9 @@
             "text": "Disclaimer: leylines.ch must not be used for navigation or precise spatial analysis",
             "url": "http://www.leylines.ch/#about"
         },
-        "developerAttribution": {
-            "text": "Joerg Roth",
-            "link": "http://www.leylines.ch"
+        "printDisclaimer":{
+            "text":"Put your print disclaimer here.",
+            "url": "#"
         },
         "globalDisclaimer": {
             "confirmationRequired": true,
@@ -31,8 +31,13 @@
             "text":"Put your print disclaimer here.",
             "url": "#"
         },
+        "developerAttribution": {
+            "text": "Joerg Roth",
+            "link": "http://www.leylines.ch"
+        },
         "appName": "leylines",
         "supportEmail": "info@leylines.ch",
+        "proj4ServiceBaseUrl": "proj4def/",
         "brandBarElements": [
             "",
             "<a target=\"_blank\" href=\"http://www.leylines.ch\"><img src=\"images/leylines-logo.svg\" height=\"52\" title=\"Version: {{version}}\" /></a>",

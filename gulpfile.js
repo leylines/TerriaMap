@@ -132,11 +132,6 @@ gulp.task('copy-editor', function() {
         .pipe(gulp.dest('./wwwroot/editor'));
 });
 
-gulp.task('styleguide', function(done) {
-    var childExec = require('child_process').exec;
-    childExec('./node_modules/kss/bin/kss-node ./node_modules/terriajs/lib/Sass ./wwwroot/styleguide --template ./wwwroot/styleguide-template --css ./../build/TerriaMap.css', undefined, done);
-});
-
 gulp.task('lint', function() {
     var runExternalModule = require('terriajs/buildprocess/runExternalModule');
 
@@ -286,7 +281,7 @@ gulp.task('make-package', function() {
     }
 
     var tarResult = spawnSync('tar', [
-        'czvf',
+        'czf',
         path.join('..', 'packages', packageName + '.tar.gz')
     ].concat(fs.readdirSync(workingDir)), {
         cwd: workingDir,
