@@ -31,10 +31,6 @@ gulp.task('inject-files', function(done) {
             '../build-data/images/**'
         ], { base: '../build-data/images' })
     .pipe(gulp.dest('wwwroot/images'));
-    gulp.src([
-            '../build-data/cesium-js/*.js'
-        ], { base: '../build-data/cesium-js' })
-    .pipe(gulp.dest('node_modules/terriajs-cesium/Source/DataSources'));
     return;
 });
 
