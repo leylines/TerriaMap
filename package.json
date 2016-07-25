@@ -62,7 +62,7 @@
     "svg-sprite-loader": "0.0.25",
     "terriajs": "git://github.com/leylines/terriajs.git#master",
     "terriajs-catalog-editor": "^0.2.0",
-    "terriajs-cesium": "1.23.1",
+    "terriajs-cesium": "1.23.2",
     "terriajs-schema": "latest",
     "url-loader": "^0.5.7",
     "urijs": "^1.17.1",
