@@ -29,7 +29,7 @@ import updateApplicationOnHashChange from 'terriajs/lib/ViewModels/updateApplica
 import updateApplicationOnMessageFromParentWindow from 'terriajs/lib/ViewModels/updateApplicationOnMessageFromParentWindow';
 import ViewState from 'terriajs/lib/ReactViewModels/ViewState';
 import BingMapsSearchProviderViewModel from 'terriajs/lib/ViewModels/BingMapsSearchProviderViewModel.js';
-import GazetteerSearchProviderViewModel from 'terriajs/lib/ViewModels/GazetteerSearchProviderViewModel.js';
+//import GazetteerSearchProviderViewModel from 'terriajs/lib/ViewModels/GazetteerSearchProviderViewModel.js';
 import GNAFSearchProviderViewModel from 'terriajs/lib/ViewModels/GNAFSearchProviderViewModel.js';
 
 import render from './lib/Views/render';
@@ -95,7 +95,7 @@ terria.start({
                 terria: terria,
                 key: configuration.bingMapsKey
             }),
-            new GazetteerSearchProviderViewModel({terria}),
+            //new GazetteerSearchProviderViewModel({terria}),
             new GNAFSearchProviderViewModel({terria})
         ];
 
