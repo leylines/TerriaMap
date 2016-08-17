@@ -39,9 +39,7 @@
         "supportEmail": "info@leylines.ch",
         "proj4ServiceBaseUrl": "proj4def/",
         "brandBarElements": [
-            "",
-            "<a target=\"_blank\" href=\"http://www.leylines.ch\"><img src=\"images/leylines-logo.svg\" height=\"52\" title=\"Version: {{version}}\" /></a>",
-            ""
+            "<a target=\"_blank\" href=\"http://www.leylines.ch\"><img src=\"images/leylines-logo.svg\" height=\"52\" title=\"Version: {{version}}\" /></a>"
         ]
     }
 }

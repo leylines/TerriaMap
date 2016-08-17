@@ -96,7 +96,6 @@ terria.start({
                 terria: terria,
                 key: configuration.bingMapsKey
             }),
-            //new GazetteerSearchProviderViewModel({terria}),
             new NominatimSearchProviderViewModel({terria})
         ];
 
