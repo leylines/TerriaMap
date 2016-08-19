@@ -29,12 +29,7 @@ import updateApplicationOnHashChange from 'terriajs/lib/ViewModels/updateApplica
 import updateApplicationOnMessageFromParentWindow from 'terriajs/lib/ViewModels/updateApplicationOnMessageFromParentWindow';
 import ViewState from 'terriajs/lib/ReactViewModels/ViewState';
 import BingMapsSearchProviderViewModel from 'terriajs/lib/ViewModels/BingMapsSearchProviderViewModel.js';
-<<<<<<< HEAD
 import NominatimSearchProviderViewModel from 'terriajs/lib/ViewModels/NominatimSearchProviderViewModel.js';
-=======
-import GazetteerSearchProviderViewModel from 'terriajs/lib/ViewModels/GazetteerSearchProviderViewModel.js';
-import GnafSearchProviderViewModel from 'terriajs/lib/ViewModels/GnafSearchProviderViewModel.js';
->>>>>>> upstream/master
 
 import render from './lib/Views/render';
 
