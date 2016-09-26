@@ -17,7 +17,8 @@ if (!require('semver').satisfies(process.version, minNode)) {
     process.exit();
 }
 
-gulp.task('build', ['render-datasource-templates', 'merge-datasources', 'copy-terriajs-assets', 'build-app']);
+//gulp.task('build', ['render-datasource-templates', 'merge-datasources', 'copy-terriajs-assets', 'build-app']);
+gulp.task('build', ['render-datasource-templates', 'copy-terriajs-assets', 'build-app']);
 gulp.task('release', ['render-datasource-templates', 'copy-terriajs-assets', 'release-app', 'make-editor-schema']);
 gulp.task('watch', ['watch-datasource-templates', 'watch-terriajs-assets', 'watch-app']);
 gulp.task('default', ['make-symlinks', 'inject-files', 'lint', 'build']);
