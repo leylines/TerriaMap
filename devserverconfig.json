@@ -1,6 +1,5 @@
 {
     "port": 3001,
-
     "allowProxyFor" : [
         "nicta.com.au",
         "gov.au",
@@ -21,6 +20,9 @@
         "gov",
         "gov.uk",
         "gov.nz"
+    ],
+    "initPaths": [
+        "node_modules/leylines-catalog/build"
     ]
 }
 
