@@ -30,11 +30,11 @@
     "babel-preset-react": "^6.5.0",
     "css-loader": "^0.25.0",
     "dateformat": "",
-    "ejs": "^2.4.2",
+    "ejs": "^2.5.2",
     "eslint": "^3.4.0",
     "eslint-plugin-jsx-control-statements": "2.1.1",
     "eslint-plugin-react": "^6.1.2",
-    "extract-text-webpack-plugin": "git://github.com/TerriaJS/extract-text-webpack-plugin#order-undefined-error",
+    "extract-text-webpack-plugin": "git://github.com/TerriaJS/extract-text-webpack-plugin.git#order-undefined-error",
     "file-loader": "^0.8.5",
     "fs-extra": "^0.30.0",
     "generate-terriajs-schema": "^1.3.0",
@@ -59,7 +59,7 @@
     "redbox-react": "^1.2.3",
     "sass-loader": "^4.0.1",
     "semver": "^5.0.0",
-    "style-loader": "git://github.com/TerriaJS/style-loader#chromeWorkaround",
+    "style-loader": "git://github.com/TerriaJS/style-loader.git#chromeWorkaround",
     "svg-sprite-loader": "0.0.27",
     "terriajs": "git://github.com/leylines/terriajs.git#master",
     "terriajs-catalog-editor": "^0.2.0",
@@ -69,7 +69,7 @@
     "urijs": "^1.17.1",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
-    "yargs": "^4.7.0"
+    "yargs": "^6.0.0"
   },
   "scripts": {
     "start": "bash ./node_modules/terriajs-server/run_server.sh --config-file devserverconfig.json",
