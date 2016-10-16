@@ -5,7 +5,6 @@
 // This matters if ever we have gulp tasks run from npm, especially post-install ones.
 var fs = require('fs');
 var gulp = require('gulp');
-var jsoncombine = require('gulp-jsoncombine');
 var gutil = require('gulp-util');
 var symlink = require('gulp-symlink');
 var path = require('path');
@@ -42,23 +41,6 @@ gulp.task('make-symlinks', function () {
       .pipe(symlink('wwwroot/geo-data',{force: true}))
     gulp.src('node_modules/leylines-catalog/build')
       .pipe(symlink('wwwroot/init',{force: true}))
-    return;
-});
-
-gulp.task('merge-datasources', function() {
-    var jsonspacing=0;
-    gulp.src("../build-data/datasources-prod/*.json")
-        .pipe(jsoncombine("leylines.json", function(data) {
-        // be absolutely sure we have the files in alphabetical order, with 000_settings first.
-        var keys = Object.keys(data).slice().sort();
-        data[keys[0]].catalog = [];
-
-        for (var i = 1; i < keys.length; i++) {
-            data[keys[0]].catalog.push(data[keys[i]].catalog[0]);
-        }
-        return new Buffer(JSON.stringify(data[keys[0]], null, jsonspacing));
-    }))
-    .pipe(gulp.dest("./wwwroot/init"));
     return;
 });
 
