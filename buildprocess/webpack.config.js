@@ -2,7 +2,7 @@
 
 /*global require*/
 var webpack = require('webpack');
-var configureWebpackForTerriaJS = require('terriajs/buildprocess/configureWebpack');
+var configureWebpackForTerriaJS = require('leylinesjs/buildprocess/configureWebpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require('path');
 
@@ -79,5 +79,5 @@ module.exports = function(devMode, hot) {
         }        
     };
     config.resolve.alias['terriajs-variables'] = require.resolve('../lib/Styles/variables.scss');
-    return configureWebpackForTerriaJS(path.dirname(require.resolve('terriajs/package.json')), config, devMode, hot, ExtractTextPlugin);
+    return configureWebpackForTerriaJS(path.dirname(require.resolve('leylinesjs/package.json')), config, devMode, hot, ExtractTextPlugin);
 };

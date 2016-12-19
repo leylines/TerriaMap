@@ -12,23 +12,23 @@ var configuration = {
 // Check browser compatibility early on.
 // A very old browser (e.g. Internet Explorer 8) will fail on requiring-in many of the modules below.
 // 'ui' is the name of the DOM element that should contain the error popup if the browser is not compatible
-//var checkBrowserCompatibility = require('terriajs/lib/ViewModels/checkBrowserCompatibility');
+//var checkBrowserCompatibility = require('leylinesjs/lib/ViewModels/checkBrowserCompatibility');
 
 // checkBrowserCompatibility('ui');
-import GoogleAnalytics from 'terriajs/lib/Core/GoogleAnalytics';
-import ShareDataService from 'terriajs/lib/Models/ShareDataService';
-import OgrCatalogItem from 'terriajs/lib/Models/OgrCatalogItem';
-import raiseErrorToUser from 'terriajs/lib/Models/raiseErrorToUser';
-import registerAnalytics from 'terriajs/lib/Models/registerAnalytics';
-import registerCatalogMembers from 'terriajs/lib/Models/registerCatalogMembers';
-import registerCustomComponentTypes from 'terriajs/lib/ReactViews/Custom/registerCustomComponentTypes';
-import registerKnockoutBindings from 'terriajs/lib/Core/registerKnockoutBindings';
-import Terria from 'terriajs/lib/Models/Terria';
-import updateApplicationOnHashChange from 'terriajs/lib/ViewModels/updateApplicationOnHashChange';
-import updateApplicationOnMessageFromParentWindow from 'terriajs/lib/ViewModels/updateApplicationOnMessageFromParentWindow';
-import ViewState from 'terriajs/lib/ReactViewModels/ViewState';
-import BingMapsSearchProviderViewModel from 'terriajs/lib/ViewModels/BingMapsSearchProviderViewModel.js';
-import NominatimSearchProviderViewModel from 'terriajs/lib/ViewModels/NominatimSearchProviderViewModel.js';
+import GoogleAnalytics from 'leylinesjs/lib/Core/GoogleAnalytics';
+import ShareDataService from 'leylinesjs/lib/Models/ShareDataService';
+import OgrCatalogItem from 'leylinesjs/lib/Models/OgrCatalogItem';
+import raiseErrorToUser from 'leylinesjs/lib/Models/raiseErrorToUser';
+import registerAnalytics from 'leylinesjs/lib/Models/registerAnalytics';
+import registerCatalogMembers from 'leylinesjs/lib/Models/registerCatalogMembers';
+import registerCustomComponentTypes from 'leylinesjs/lib/ReactViews/Custom/registerCustomComponentTypes';
+import registerKnockoutBindings from 'leylinesjs/lib/Core/registerKnockoutBindings';
+import Terria from 'leylinesjs/lib/Models/Terria';
+import updateApplicationOnHashChange from 'leylinesjs/lib/ViewModels/updateApplicationOnHashChange';
+import updateApplicationOnMessageFromParentWindow from 'leylinesjs/lib/ViewModels/updateApplicationOnMessageFromParentWindow';
+import ViewState from 'leylinesjs/lib/ReactViewModels/ViewState';
+import BingMapsSearchProviderViewModel from 'leylinesjs/lib/ViewModels/BingMapsSearchProviderViewModel.js';
+import NominatimSearchProviderViewModel from 'leylinesjs/lib/ViewModels/NominatimSearchProviderViewModel.js';
 import defined from 'terriajs-cesium/Source/Core/defined';
 import render from './lib/Views/render';
 
@@ -101,8 +101,8 @@ terria.start({
         updateApplicationOnMessageFromParentWindow(terria, window);
 
         //temp
-        var createGlobalBaseMapOptions = require('terriajs/lib/ViewModels/createGlobalBaseMapOptions');
-        var selectBaseMap = require('terriajs/lib/ViewModels/selectBaseMap');
+        var createGlobalBaseMapOptions = require('leylinesjs/lib/ViewModels/createGlobalBaseMapOptions');
+        var selectBaseMap = require('leylinesjs/lib/ViewModels/selectBaseMap');
         // Create the various base map options.
         var allBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey, configuration.digitalGlobeApiKey);
         selectBaseMap(terria, allBaseMaps, 'Bing Maps Aerial with Labels', true);

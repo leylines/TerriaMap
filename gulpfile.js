@@ -35,7 +35,7 @@ gulp.task('inject-files', function(done) {
 });
 
 gulp.task('make-symlinks', function () {
-    gulp.src('node_modules/terriajs/wwwroot/doc')
+    gulp.src('node_modules/leylinesjs/wwwroot/doc')
       .pipe(symlink('wwwroot/html/doc',{force: true}))
     gulp.src('../geo-data')
       .pipe(symlink('wwwroot/geo-data',{force: true}))
@@ -45,7 +45,7 @@ gulp.task('make-symlinks', function () {
 });
 
 gulp.task('build-app', ['check-terriajs-dependencies', 'write-version'], function(done) {
-    var runWebpack = require('terriajs/buildprocess/runWebpack.js');
+    var runWebpack = require('leylinesjs/buildprocess/runWebpack.js');
     var webpack = require('webpack');
     var webpackConfig = require('./buildprocess/webpack.config.js')(true);
 
@@ -53,7 +53,7 @@ gulp.task('build-app', ['check-terriajs-dependencies', 'write-version'], functio
 });
 
 gulp.task('release-app', ['check-terriajs-dependencies', 'write-version'], function(done) {
-    var runWebpack = require('terriajs/buildprocess/runWebpack.js');
+    var runWebpack = require('leylinesjs/buildprocess/runWebpack.js');
     var webpack = require('webpack');
     var webpackConfig = require('./buildprocess/webpack.config.js')(false);
 
@@ -68,7 +68,7 @@ gulp.task('release-app', ['check-terriajs-dependencies', 'write-version'], funct
 
 gulp.task('watch-app', ['check-terriajs-dependencies'], function(done) {
     var fs = require('fs');
-    var watchWebpack = require('terriajs/buildprocess/watchWebpack');
+    var watchWebpack = require('leylinesjs/buildprocess/watchWebpack');
     var webpack = require('webpack');
     var webpackConfig = require('./buildprocess/webpack.config.js')(true, false);
 
@@ -77,7 +77,7 @@ gulp.task('watch-app', ['check-terriajs-dependencies'], function(done) {
 });
 
 gulp.task('copy-terriajs-assets', function() {
-    var terriaWebRoot = path.join(getPackageRoot('terriajs'), 'wwwroot');
+    var terriaWebRoot = path.join(getPackageRoot('leylinesjs'), 'wwwroot');
     var sourceGlob = path.join(terriaWebRoot, '**');
     var destPath = path.resolve(__dirname, 'wwwroot', 'build', 'TerriaJS');
 
@@ -87,7 +87,7 @@ gulp.task('copy-terriajs-assets', function() {
 });
 
 gulp.task('watch-terriajs-assets', ['copy-terriajs-assets'], function() {
-    var terriaWebRoot = path.join(getPackageRoot('terriajs'), 'wwwroot');
+    var terriaWebRoot = path.join(getPackageRoot('leylinesjs'), 'wwwroot');
     var sourceGlob = path.join(terriaWebRoot, '**');
 
     return gulp.watch(sourceGlob, watchOptions, [ 'copy-terriajs-assets' ]);
@@ -97,7 +97,7 @@ gulp.task('watch-terriajs-assets', ['copy-terriajs-assets'], function() {
 gulp.task('make-editor-schema', ['copy-editor'], function() {
     var generateSchema = require('generate-terriajs-schema');
 
-    var terriaJSRoot = getPackageRoot('terriajs');
+    var terriaJSRoot = getPackageRoot('leylinesjs');
 
     return generateSchema({
         sourceGlob: [
@@ -122,10 +122,10 @@ gulp.task('copy-editor', function() {
 });
 
 gulp.task('lint', function() {
-    var runExternalModule = require('terriajs/buildprocess/runExternalModule');
+    var runExternalModule = require('leylinesjs/buildprocess/runExternalModule');
 
     runExternalModule('eslint/bin/eslint.js', [
-        '-c', path.join(getPackageRoot('terriajs'), '.eslintrc'),
+        '-c', path.join(getPackageRoot('leylinesjs'), '.eslintrc'),
         '--ignore-pattern', 'lib/ThirdParty',
         '--max-warnings', '0',
         'index.js',
@@ -170,17 +170,17 @@ function getPackageRoot(packageName) {
 gulp.task('diagnose', function() {
     console.log('Have you run `npm install` at least twice?  See https://github.com/npm/npm/issues/10727');
 
-    var terriajsStat = fs.lstatSync('./node_modules/terriajs');
+    var terriajsStat = fs.lstatSync('./node_modules/leylinesjs');
     var terriajsIsLinked = terriajsStat.isSymbolicLink();
 
     if (terriajsIsLinked) {
         console.log('TerriaJS is linked.  Have you run `npm install` at least twice in your TerriaJS directory?');
 
-        var terriaPackageJson = JSON.parse(fs.readFileSync('./node_modules/terriajs/package.json'));
+        var terriaPackageJson = JSON.parse(fs.readFileSync('./node_modules/leylinesjs/package.json'));
 
-        var terriaPackages = fs.readdirSync('./node_modules/terriajs/node_modules');
+        var terriaPackages = fs.readdirSync('./node_modules/leylinesjs/node_modules');
         terriaPackages.forEach(function(packageName) {
-            var terriaPackage = path.join('./node_modules/terriajs/node_modules', packageName);
+            var terriaPackage = path.join('./node_modules/leylinesjs/node_modules', packageName);
             var appPackage = path.join('./node_modules', packageName);
             if (packageName === '.bin' || !fs.existsSync(appPackage)) {
                 return;
@@ -216,9 +216,9 @@ gulp.task('diagnose', function() {
         console.log('TerriaJS is not linked.');
 
         try {
-            var terriajsModules = fs.readdirSync('./node_modules/terriajs/node_modules');
+            var terriajsModules = fs.readdirSync('./node_modules/leylinesjs/node_modules');
             if (terriajsModules.length > 0) {
-                console.log('./node_modules/terriajs/node_modules is not empty.  This may indicate a conflict between package versions in this application and TerriaJS, or it may indicate you\'re using an old version of npm.');
+                console.log('./node_modules/leylinesjs/node_modules is not empty.  This may indicate a conflict between package versions in this application and TerriaJS, or it may indicate you\'re using an old version of npm.');
             }
         } catch (e) {
         }
@@ -368,7 +368,7 @@ gulp.task('watch-datasource-templates', ['render-datasource-templates'], functio
 
 gulp.task('sync-terriajs-dependencies', function() {
     var appPackageJson = require('./package.json');
-    var terriaPackageJson = require('terriajs/package.json');
+    var terriaPackageJson = require('leylinesjs/package.json');
 
     syncDependencies(appPackageJson.dependencies, terriaPackageJson);
     syncDependencies(appPackageJson.devDependencies, terriaPackageJson);
@@ -378,7 +378,7 @@ gulp.task('sync-terriajs-dependencies', function() {
 
 gulp.task('check-terriajs-dependencies', function() {
     var appPackageJson = require('./package.json');
-    var terriaPackageJson = require('terriajs/package.json');
+    var terriaPackageJson = require('leylinesjs/package.json');
 
     syncDependencies(appPackageJson.dependencies, terriaPackageJson, true);
     syncDependencies(appPackageJson.devDependencies, terriaPackageJson, true);

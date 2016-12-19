@@ -2,12 +2,12 @@ import React from 'react';
 
 import version from '../../version';
 
-import StandardUserInterface from 'terriajs/lib/ReactViews/StandardUserInterface/StandardUserInterface.jsx';
-import MenuItem from 'terriajs/lib/ReactViews/StandardUserInterface/customizable/MenuItem';
+import StandardUserInterface from 'leylinesjs/lib/ReactViews/StandardUserInterface/StandardUserInterface.jsx';
+import MenuItem from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/MenuItem';
 import RelatedMaps from './RelatedMaps';
-import { Menu } from 'terriajs/lib/ReactViews/StandardUserInterface/customizable/Groups';
-import { Nav } from 'terriajs/lib/ReactViews/StandardUserInterface/customizable/Groups';
-import MeasureTool from 'terriajs/lib/ReactViews/Map/Navigation/MeasureTool';
+import { Menu } from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/Groups';
+import { Nav } from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/Groups';
+import MeasureTool from 'leylinesjs/lib/ReactViews/Map/Navigation/MeasureTool';
 
 import './global.scss';
 
