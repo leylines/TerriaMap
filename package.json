@@ -1,5 +1,5 @@
 {
-  "name": "leylines",
+  "name": "leylinesMap",
   "version": "1.0.0",
   "description": "Geospatial catalog explorer based on TerriaJS for maps.leylines.ch",
   "license": "Apache-2.0",
@@ -55,7 +55,7 @@
     "semver": "^5.0.0",
     "style-loader": "git://github.com/TerriaJS/style-loader.git#chromeWorkaround",
     "svg-sprite-loader": "0.0.31",
-    "terriajs": "git://github.com/leylines/terriajs.git#master",
+    "leylinesjs": "git://github.com/leylines/leylinesjs.git#master",
     "terriajs-catalog-editor": "^0.2.0",
     "terriajs-cesium": "1.25.1",
     "terriajs-schema": "latest",
