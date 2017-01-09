@@ -1,3 +1,7 @@
+/*eslint-env node*/
+/*eslint no-sync: 0*/
+/*eslint no-process-exit: 0*/
+
 'use strict';
 
 /*global require*/
@@ -11,7 +15,7 @@ var path = require('path');
 
 var minNode = require('./package.json').engines.node;
 if (!require('semver').satisfies(process.version, minNode)) {
-    console.log('Terria requires Node.js ' + minNode + ' to build. Please update your version of Node.js, delete your node_modules directory' +
+    console.log('Leylines requires Node.js ' + minNode + ' to build. Please update your version of Node.js, delete your node_modules directory' +
         ', then run npm install and gulp again.');
     process.exit();
 }
@@ -49,6 +53,8 @@ gulp.task('build-app', ['check-terriajs-dependencies', 'write-version'], functio
     var webpack = require('webpack');
     var webpackConfig = require('./buildprocess/webpack.config.js')(true);
 
+    checkForDuplicateCesium();
+
     runWebpack(webpack, webpackConfig, done);
 });
 
@@ -56,6 +62,8 @@ gulp.task('release-app', ['check-terriajs-dependencies', 'write-version'], funct
     var runWebpack = require('leylinesjs/buildprocess/runWebpack.js');
     var webpack = require('webpack');
     var webpackConfig = require('./buildprocess/webpack.config.js')(false);
+
+    checkForDuplicateCesium();
 
     runWebpack(webpack, Object.assign({}, webpackConfig, {
         plugins: [
@@ -72,6 +80,8 @@ gulp.task('watch-app', ['check-terriajs-dependencies'], function(done) {
     var webpack = require('webpack');
     var webpackConfig = require('./buildprocess/webpack.config.js')(true, false);
 
+    checkForDuplicateCesium();
+
     fs.writeFileSync('version.js', 'module.exports = \'Development Build\';');
     watchWebpack(webpack, webpackConfig, done);
 });
@@ -79,7 +89,7 @@ gulp.task('watch-app', ['check-terriajs-dependencies'], function(done) {
 gulp.task('copy-terriajs-assets', function() {
     var terriaWebRoot = path.join(getPackageRoot('leylinesjs'), 'wwwroot');
     var sourceGlob = path.join(terriaWebRoot, '**');
-    var destPath = path.resolve(__dirname, 'wwwroot', 'build', 'TerriaJS');
+    var destPath = path.resolve(__dirname, 'wwwroot', 'build', 'LeylinesJS');
 
     return gulp
         .src([ sourceGlob ], { base: terriaWebRoot })
@@ -97,16 +107,11 @@ gulp.task('watch-terriajs-assets', ['copy-terriajs-assets'], function() {
 gulp.task('make-editor-schema', ['copy-editor'], function() {
     var generateSchema = require('generate-terriajs-schema');
 
-    var terriaJSRoot = getPackageRoot('leylinesjs');
+    //var terriaJSRoot = getPackageRoot('leylinesjs');
+    var schemaSourceGlob = require('leylinesjs/buildprocess/schemaSourceGlob');
 
     return generateSchema({
-        sourceGlob: [
-            path.join(terriaJSRoot, 'lib/Models/*CatalogItem.js'),
-            path.join(terriaJSRoot, 'lib/Models/*CatalogGroup.js'),
-            path.join(terriaJSRoot, 'lib/Models/*CatalogMember.js'),
-            '!' + path.join(terriaJSRoot, 'lib/Models/addUserCatalogMember.js'),
-            '!' + path.join(terriaJSRoot, 'lib/Models/AsyncFunctionResultCatalogItem.js')
-        ],
+        sourceGlob: schemaSourceGlob,
         dest: 'wwwroot/editor',
         noversionsubdir: true,
         editor: true,
@@ -150,19 +155,6 @@ gulp.task('write-version', function() {
     fs.writeFileSync('version.js', 'module.exports = \'' + version + '\';');
 });
 
-function onError(e) {
-    if (e.code === 'EMFILE') {
-        console.error('Too many open files. You should run this command:\n    ulimit -n 2048');
-        process.exit(1);
-    } else if (e.code === 'ENOSPC') {
-        console.error('Too many files to watch. You should run this command:\n' +
-                    '    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p');
-        process.exit(1);
-    }
-    gutil.log(e.message);
-    process.exit(1);
-}
-
 function getPackageRoot(packageName) {
     return path.dirname(require.resolve(packageName + '/package.json'));
 }
@@ -174,7 +166,7 @@ gulp.task('diagnose', function() {
     var terriajsIsLinked = terriajsStat.isSymbolicLink();
 
     if (terriajsIsLinked) {
-        console.log('TerriaJS is linked.  Have you run `npm install` at least twice in your TerriaJS directory?');
+        console.log('LeylinesJS is linked.  Have you run `npm install` at least twice in your LeylinesJS directory?');
 
         var terriaPackageJson = JSON.parse(fs.readFileSync('./node_modules/leylinesjs/package.json'));
 
@@ -192,10 +184,10 @@ gulp.task('diagnose', function() {
             if (terriaPackageStat.isSymbolicLink() !== appPackageStat.isSymbolicLink()) {
                 console.log('Problem with package: ' + packageName);
                 console.log('  The application ' + (appPackageStat.isSymbolicLink() ? 'links' : 'does not link') + ' to the package.');
-                console.log('  TerriaJS ' + (terriaPackageStat.isSymbolicLink() ? 'links' : 'does not link') + ' to the package.');
+                console.log('  LeylinesJS ' + (terriaPackageStat.isSymbolicLink() ? 'links' : 'does not link') + ' to the package.');
             }
 
-            // Verify versions only for packages required by TerriaJS.
+            // Verify versions only for packages required by LeylinesJS.
             if (typeof terriaPackageJson.dependencies[packageName] === 'undefined') {
                 return;
             }
@@ -209,16 +201,16 @@ gulp.task('diagnose', function() {
             if (terriaDependencyPackageJson.version !== appDependencyPackageJson.version) {
                 console.log('Problem with package: ' + packageName);
                 console.log('  The application has version ' + appDependencyPackageJson.version);
-                console.log('  TerriaJS has version ' + terriaDependencyPackageJson.version);
+                console.log('  LeylinesJS has version ' + terriaDependencyPackageJson.version);
             }
         });
     } else {
-        console.log('TerriaJS is not linked.');
+        console.log('LeylinesJS is not linked.');
 
         try {
             var terriajsModules = fs.readdirSync('./node_modules/leylinesjs/node_modules');
             if (terriajsModules.length > 0) {
-                console.log('./node_modules/leylinesjs/node_modules is not empty.  This may indicate a conflict between package versions in this application and TerriaJS, or it may indicate you\'re using an old version of npm.');
+                console.log('./node_modules/leylinesjs/node_modules is not empty.  This may indicate a conflict between package versions in this application and LeylinesJS, or it may indicate you\'re using an old version of npm.');
             }
         } catch (e) {
         }
@@ -237,8 +229,6 @@ gulp.task('make-package', function() {
     if (!fs.existsSync(packagesDir)) {
         fs.mkdirSync(packagesDir);
     }
-
-    var packageFile = path.join(packagesDir, packageName + '.tar.gz');
 
     var workingDir = path.join('.', 'deploy', 'work');
     if (fs.existsSync(workingDir)) {
@@ -398,5 +388,21 @@ function syncDependencies(dependencies, targetJson, justWarn) {
                 }
             }
         }
+    }
+}
+
+function checkForDuplicateCesium() {
+    var fse = require('fs-extra');
+
+    if (fse.existsSync('node_modules/terriajs-cesium') && fse.existsSync('node_modules/terriajs/node_modules/terriajs-cesium')) {
+        console.log('You have two copies of terriajs-cesium, one in this application\'s node_modules\n' +
+                    'directory and the other in node_modules/terriajs/node_modules/terriajs-cesium.\n' +
+                    'This leads to strange problems, such as knockout observables not working.\n' +
+                    'Please verify that node_modules/terriajs-cesium is the correct version and\n' + 
+                    '  rm -rf node_modules/terriajs/node_modules/terriajs-cesium\n' +
+                    'Also consider running:\n' +
+                    '  npm run gulp sync-terriajs-dependencies\n' +
+                    'to prevent this problem from recurring the next time you `npm install`.');
+        throw new gutil.PluginError('checkForDuplicateCesium', 'You have two copies of Cesium.', { showStack: false });
     }
 }

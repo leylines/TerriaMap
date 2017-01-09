@@ -1,0 +1,51 @@
+{
+    "initializationUrls" : [
+        "leylines"
+    ],
+    parameters: {
+        //feedbackUrl: "feedback",
+        "bingMapsKey": "Ar2EmKvPSqMPwjLanIEHgtO-r8h0cBPrP2D0Rx_Ejqy22LvRl4UvqZor1xSTtq4G",
+        "digitalGlobeApiKey": "pk.eyJ1IjoiZGlnaXRhbGdsb2JlIiwiYSI6ImNpcDVrcXowNjAwaTN1Ym01eHU5OGxwNXYifQ.ycz_Z8TJDSBOc6-_cTJCLQ",
+        "urthecastApiKey": "CDF7911468AF4C92BBA1",
+        "urthecastApiSecret": "540EB50E9E5A4C11916656568DA47F21",
+        "googleUrlShortenerKey": null,
+        "googleAnalyticsKey": "UA-80868684-1",
+        "googleAnalyticsOptions": null,
+        /* Text that appears at the bottom of the map */
+        "disclaimer": {
+            "text": "Disclaimer: leylines.ch must not be used for navigation or precise spatial analysis",
+            "url": "http://www.leylines.ch/#about"
+        },
+        /*
+        // Text that will be added to any pages printed from your site.
+        printDisclaimer:{
+            text:"Put your print disclaimer here.",
+            url: "#"
+        },
+        */
+         
+        // Pop-up disclaimer that will be shown at the start
+        // The text of the disclaimer is in lib/Views/GlobalDisclaimer.html
+        /*globalDisclaimer: {
+            confirmationRequired: true,
+            buttonTitle: "I agree",
+            title: "Disclaimer",
+            // If the current browser location is not prod, or is dev, then show a "not the real site" warning.
+            // The text of that is in lib/Views/DevelopmentDisclaimerPreamble.html
+            //prodHostRegex: "gov.\\.au$",
+            //devHostRegex: "\\b(staging|preview|test|dev)\\.",
+            enableOnLocalhost: true // If false, don't show this when running on localhost
+        },*/
+        developerAttribution: {
+            "text": "Joerg Roth",
+            "link": "http://www.leylines.ch"
+        },
+        appName: "leylines",
+        supportEmail: "info@leylines.ch",
+        proj4ServiceBaseUrl: "proj4def/",
+        brandBarElements: [
+            "<a target=\"_blank\" href=\"http://www.leylines.ch\"><img src=\"images/leylines-logo.svg\" height=\"52\" title=\"Version: {{version}}\" /></a>"
+        ]
+        
+    }
+}
