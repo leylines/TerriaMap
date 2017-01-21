@@ -22,7 +22,6 @@ import raiseErrorToUser from 'leylinesjs/lib/Models/raiseErrorToUser';
 import registerAnalytics from 'leylinesjs/lib/Models/registerAnalytics';
 import registerCatalogMembers from 'leylinesjs/lib/Models/registerCatalogMembers';
 import registerCustomComponentTypes from 'leylinesjs/lib/ReactViews/Custom/registerCustomComponentTypes';
-import registerKnockoutBindings from 'leylinesjs/lib/Core/registerKnockoutBindings';
 import Terria from 'leylinesjs/lib/Models/Terria';
 import updateApplicationOnHashChange from 'leylinesjs/lib/ViewModels/updateApplicationOnHashChange';
 import updateApplicationOnMessageFromParentWindow from 'leylinesjs/lib/ViewModels/updateApplicationOnMessageFromParentWindow';
