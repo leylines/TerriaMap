@@ -35,10 +35,6 @@ import render from './lib/Views/render';
 // Tell the OGR catalog item where to find its conversion service.  If you're not using OgrCatalogItem you can remove this.
 OgrCatalogItem.conversionServiceBaseUrl = configuration.conversionServiceBaseUrl;
 
-// Register custom Knockout.js bindings.  If you're not using the TerriaJS user interface, you can remove this.
-registerKnockoutBindings();
-
-
 // Register all types of catalog members in the core TerriaJS.  If you only want to register a subset of them
 // (i.e. to reduce the size of your application if you don't actually use them all), feel free to copy a subset of
 // the code in the registerCatalogMembers function here instead.
