@@ -32,8 +32,8 @@ var watchOptions = {
 
 gulp.task('inject-files', function(done) {
     gulp.src([
-            '../build-data/images/**'
-        ], { base: '../build-data/images' })
+            '../git/leylines-helper/images/**'
+        ], { base: '../git/leylines-helper/images' })
     .pipe(gulp.dest('wwwroot/images'));
     return;
 });
