@@ -53,7 +53,7 @@
     "sass-loader": "^4.0.1",
     "semver": "^5.0.0",
     "style-loader": "^0.13.1",
-    "svg-sprite-loader": "0.2.0",
+    "svg-sprite-loader": "0.2.1",
     "leylinesjs": "git://github.com/leylines/leylinesjs.git#master",
     "terriajs-catalog-editor": "^0.2.0",
     "terriajs-cesium": "1.29.2",
