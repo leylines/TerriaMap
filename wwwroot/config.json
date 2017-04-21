@@ -1,9 +1,9 @@
 {
-    "initializationUrls" : [
+    /* Names of init files (in wwwroot/init), without the .json extension, to load by default */
+    initializationUrls: [
         "leylines"
     ],
     parameters: {
-        //feedbackUrl: "feedback",
         "bingMapsKey": "Ar2EmKvPSqMPwjLanIEHgtO-r8h0cBPrP2D0Rx_Ejqy22LvRl4UvqZor1xSTtq4G",
         "digitalGlobeApiKey": "pk.eyJ1IjoiZGlnaXRhbGdsb2JlIiwiYSI6ImNpcDVrcXowNjAwaTN1Ym01eHU5OGxwNXYifQ.ycz_Z8TJDSBOc6-_cTJCLQ",
         "urthecastApiKey": "CDF7911468AF4C92BBA1",
@@ -40,13 +40,17 @@
             "text": "Joerg Roth",
             "link": "http://www.leylines.ch"
         },
+        // This is used in various text messages. You should also set <title> in index.html
         appName: "leylines",
-        supportEmail: "info@leylines.ch",
-        proj4ServiceBaseUrl: "proj4def/",
+
+        // See comments in lib/Views/global.scss for further information about customising colors, logos, fonts etc.
         brandBarElements: [
             "<a target=\"_blank\" href=\"http://www.leylines.ch\"><img src=\"images/leylines-logo.svg\" height=\"52\" title=\"Version: {{version}}\" /></a>"
-        ]
-        
+        ],
+        // Shown when things go wrong.
+        supportEmail: "info@leylines.ch",
+        // You probably shouldn't change this.
+        proj4ServiceBaseUrl: "proj4def/",
         // Or this
         //feedbackUrl: "feedback",
 
