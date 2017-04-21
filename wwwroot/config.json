@@ -47,5 +47,11 @@
             "<a target=\"_blank\" href=\"http://www.leylines.ch\"><img src=\"images/leylines-logo.svg\" height=\"52\" title=\"Version: {{version}}\" /></a>"
         ]
         
+        // Or this
+        //feedbackUrl: "feedback",
+
+        // Default mobile viewer mode when loading the map for the first time on mobile platforms.
+        // Options are: "3DTerrain", "3DSmooth", "2D"
+        mobileDefaultViewerMode: "3DTerrain",
     }
 }
