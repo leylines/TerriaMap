@@ -8,6 +8,7 @@ import RelatedMaps from './RelatedMaps';
 import { Menu } from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/Groups';
 import { Nav } from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/Groups';
 import MeasureTool from 'leylinesjs/lib/ReactViews/Map/Navigation/MeasureTool';
+import AugmentedVirtualityTool from 'leylinesjs/lib/ReactViews/Map/Navigation/AugmentedVirtualityTool';
 
 import './global.scss';
 
