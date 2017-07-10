@@ -6,15 +6,14 @@ import StandardUserInterface from 'leylinesjs/lib/ReactViews/StandardUserInterfa
 import MenuItem from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/MenuItem';
 import RelatedMaps from './RelatedMaps';
 import { Menu, Nav, ExperimentalMenu } from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/Groups';
-import SplitPoint from 'terriajs/lib/ReactViews/SplitPoint';
+import SplitPoint from 'leylinesjs/lib/ReactViews/SplitPoint';
 import MeasureTool from 'leylinesjs/lib/ReactViews/Map/Navigation/MeasureTool';
-import AugmentedVirtualityTool from 'leylinesjs/lib/ReactViews/Map/Navigation/AugmentedVirtualityTool';
 
 import './global.scss';
 
 function loadAugmentedVirtuality(callback) {
-    require.ensure('terriajs/lib/ReactViews/Map/Navigation/AugmentedVirtualityTool', () => {
-        const AugmentedVirtualityTool = require('terriajs/lib/ReactViews/Map/Navigation/AugmentedVirtualityTool');
+    require.ensure('leylinesjs/lib/ReactViews/Map/Navigation/AugmentedVirtualityTool', () => {
+        const AugmentedVirtualityTool = require('leylinesjs/lib/ReactViews/Map/Navigation/AugmentedVirtualityTool');
         callback(AugmentedVirtualityTool);
     }, 'AugmentedVirtuality');
 }
