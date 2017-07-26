@@ -80,7 +80,7 @@ terria.start({
 
     try {
         configuration.bingMapsKey = terria.configParameters.bingMapsKey ? terria.configParameters.bingMapsKey : configuration.bingMapsKey;
-        configuration.digitalGlobeApiKey = terria.configParameters.digitalGlobeApiKey ? terria.configParameters.digitalGlobeApiKey : configuration.digitalGlobeApiKey;
+        configuration.mapboxGlobeApiKey = terria.configParameters.mapboxApiKey ? terria.configParameters.mapboxApiKey : configuration.mapboxApiKey;
 
         viewState.searchState.locationSearchProviders = [
             new BingMapsSearchProviderViewModel({
@@ -98,7 +98,7 @@ terria.start({
         var createGlobalBaseMapOptions = require('leylinesjs/lib/ViewModels/createGlobalBaseMapOptions');
         var selectBaseMap = require('leylinesjs/lib/ViewModels/selectBaseMap');
         // Create the various base map options.
-        var allBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey, configuration.digitalGlobeApiKey);
+        var allBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey, configuration.mapboxApiKey);
         selectBaseMap(terria, allBaseMaps, 'Bing Maps Aerial with Labels', true);
 
         // Show a modal disclaimer before user can do anything else.
