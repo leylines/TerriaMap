@@ -80,7 +80,7 @@ terria.start({
 
     try {
         configuration.bingMapsKey = terria.configParameters.bingMapsKey ? terria.configParameters.bingMapsKey : configuration.bingMapsKey;
-        configuration.mapboxGlobeApiKey = terria.configParameters.mapboxApiKey ? terria.configParameters.mapboxApiKey : configuration.mapboxApiKey;
+        configuration.mapboxApiKey = terria.configParameters.mapboxApiKey ? terria.configParameters.mapboxApiKey : configuration.mapboxApiKey;
 
         viewState.searchState.locationSearchProviders = [
             new BingMapsSearchProviderViewModel({
