@@ -5,6 +5,7 @@ import version from '../../version';
 import StandardUserInterface from 'leylinesjs/lib/ReactViews/StandardUserInterface/StandardUserInterface.jsx';
 import MenuItem from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/MenuItem';
 import RelatedMaps from './RelatedMaps';
+import Donate from './Donate';
 import { Menu, Nav, ExperimentalMenu } from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/Groups';
 import SplitPoint from 'leylinesjs/lib/ReactViews/SplitPoint';
 import MeasureTool from 'leylinesjs/lib/ReactViews/Map/Navigation/MeasureTool';
@@ -26,7 +27,7 @@ export default function UserInterface(props) {
     return (
         <StandardUserInterface {... props} version={version}>
             <Menu>
-                <RelatedMaps viewState={props.viewState} />
+                <Donate viewState={props.viewState} />
                 <MenuItem caption="About" href="http://www.leylines.ch/index.html#about" key="about-link"/>
             </Menu>
             <Nav>
