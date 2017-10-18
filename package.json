@@ -58,7 +58,7 @@
     "svg-sprite-loader": "^0.3.0",
     "leylinesjs": "git://github.com/leylines/leylinesjs.git#master",
     "terriajs-catalog-editor": "^0.2.0",
-    "terriajs-cesium": "1.33.2",
+    "terriajs-cesium": "1.33.3",
     "terriajs-schema": "latest",
     "urijs": "1.18.10",
     "url-loader": "^0.5.7",
