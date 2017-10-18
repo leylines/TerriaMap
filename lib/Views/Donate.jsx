@@ -26,7 +26,7 @@ function RelatedMaps(props) {
 
             <div className={classNames(PanelStyles.section, Styles.section)}>
                 <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joerg%40roth-doggwiler.ch&lc=US&item_name=Leylines&item_number=maps&currency_code=USD&bn=PP-DonationsBF%3Abtn_donateCC_LG.gif%3ANonHosted">
-                    <img className={Styles.image} src={require('https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png')}
+                    <img className={Styles.image} src={require('../../wwwroot/images/related/btn_donate_92x26.png')}
                          alt="Paypal donation"/>
                 </a>
 
