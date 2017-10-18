@@ -1,0 +1,23 @@
+.dropdown-inner {
+  width: 600px;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+.section {
+  composes: clearfix from 'leylinesjs/lib/Sass/common/_base.scss';
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.image {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 92px;
+  height: 26px;
+}
+
+.link {
+  composes: link from 'leylinesjs/lib/Sass/common/_base.scss';
+}

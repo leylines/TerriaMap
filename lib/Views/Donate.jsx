@@ -2,7 +2,7 @@ import React from 'react';
 
 import MenuPanel from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/MenuPanel.jsx';
 import PanelStyles from 'leylinesjs/lib/ReactViews/Map/Panels/panel.scss';
-import Styles from './related-maps.scss';
+import Styles from './donate.scss';
 import classNames from 'classnames';
 
 function RelatedMaps(props) {
@@ -29,12 +29,8 @@ function RelatedMaps(props) {
                     <img className={Styles.image} src={require('../../wwwroot/images/related/btn_donate_92x26.png')}
                          alt="Paypal donation"/>
                 </a>
-
-                <a target="_blank" className={Styles.link} href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=joerg%40roth-doggwiler.ch&lc=US&item_name=Leylines&item_number=maps&currency_code=USD&bn=PP-DonationsBF%3Abtn_donateCC_LG.gif%3ANonHosted">Donate!</a>
-
                 <p>
-                    Please support me with a donation,
-                    Support me.
+                    www.leylines.ch is a non commercial site. The purpose of this site is the preservation, enhancement and research of old and new knowledge about global and local leylines. Please consider supporting me with a donation.
                 </p>
             </div>
         </MenuPanel>
