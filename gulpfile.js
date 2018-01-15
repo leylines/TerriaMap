@@ -24,7 +24,7 @@ if (!require('semver').satisfies(process.version, minNode)) {
 gulp.task('build', ['render-datasource-templates', 'copy-terriajs-assets', 'build-app']);
 gulp.task('release', ['render-datasource-templates', 'copy-terriajs-assets', 'release-app', 'make-editor-schema']);
 gulp.task('watch', ['watch-datasource-templates', 'watch-terriajs-assets', 'watch-app']);
-gulp.task('default', ['make-symlinks', 'inject-files', 'lint', 'build']);
+gulp.task('default', ['make-symlinks', 'inject-files', 'lint', 'release']);
 
 var watchOptions = {
     interval: 1000
