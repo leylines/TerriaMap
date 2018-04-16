@@ -5,9 +5,6 @@
 var terriaOptions = {
     baseUrl: 'build/TerriaJS'
 };
-var configuration = {
-    bingMapsKey: undefined, // use Cesium key
-};
 
 // Check browser compatibility early on.
 // A very old browser (e.g. Internet Explorer 8) will fail on requiring-in many of the modules below.
@@ -31,9 +28,6 @@ import NominatimSearchProviderViewModel from 'leylinesjs/lib/ViewModels/Nominati
 import defined from 'terriajs-cesium/Source/Core/defined';
 import render from './lib/Views/render';
 
-// Tell the OGR catalog item where to find its conversion service.  If you're not using OgrCatalogItem you can remove this.
-OgrCatalogItem.conversionServiceBaseUrl = configuration.conversionServiceBaseUrl;
-
 // Register all types of catalog members in the core TerriaJS.  If you only want to register a subset of them
 // (i.e. to reduce the size of your application if you don't actually use them all), feel free to copy a subset of
 // the code in the registerCatalogMembers function here instead.
@@ -48,8 +42,6 @@ var terria = new Terria(terriaOptions);
 // Register custom components in the core TerriaJS.  If you only want to register a subset of them, or to add your own,
 // insert your custom version of the code in the registerCustomComponentTypes function here instead.
 registerCustomComponentTypes(terria);
-
-terria.welcome = '<h3>Terria<sup>TM</sup> is a spatial data platform that provides spatial predictive analytics</h3><div class="body-copy"><p>This interactive map uses TerriaJS<sup>TM</sup>, an open source software library developed by Data61 for building rich, web-based geospatial data explorers.  It uses Cesium<sup>TM</sup> open source 3D globe viewing software.  TerriaJS<sup>TM</sup> is used for the official Australian Government NationalMap and many other sites rich in the use of spatial data.</p><p>This map also uses Terria<sup>TM</sup> Inference Engine, a cloud-based platform for making probabilistic predictions using data in a web-based mapping environment. Terria<sup>TM</sup> Inference Engine uses state of the art machine learning algorithms developed by Data61 and designed specifically for large-scale spatial inference.</p></div>';
 
 // Create the ViewState before terria.start so that errors have somewhere to go.
 const viewState = new ViewState({
@@ -77,7 +69,6 @@ terria.start({
 }).otherwise(function(e) {
     raiseErrorToUser(terria, e);
 }).always(function() {
-
     try {
         configuration.bingMapsKey = terria.configParameters.bingMapsKey ? terria.configParameters.bingMapsKey : configuration.bingMapsKey;
         configuration.mapboxApiKey = terria.configParameters.mapboxApiKey ? terria.configParameters.mapboxApiKey : configuration.mapboxApiKey;
@@ -85,7 +76,7 @@ terria.start({
         viewState.searchState.locationSearchProviders = [
             new BingMapsSearchProviderViewModel({
                 terria: terria,
-                key: configuration.bingMapsKey
+                key: terria.configParameters.bingMapsKey
             }),
             new NominatimSearchProviderViewModel({terria})
         ];
@@ -94,10 +85,10 @@ terria.start({
         updateApplicationOnHashChange(terria, window);
         updateApplicationOnMessageFromParentWindow(terria, window);
 
-        //temp
+        // Create the various base map options.
         var createGlobalBaseMapOptions = require('leylinesjs/lib/ViewModels/createGlobalBaseMapOptions');
         var selectBaseMap = require('leylinesjs/lib/ViewModels/selectBaseMap');
-        // Create the various base map options.
+
         var allBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey, configuration.mapboxApiKey);
         selectBaseMap(terria, allBaseMaps, 'Bing Maps Aerial with Labels', true);
 
