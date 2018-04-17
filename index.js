@@ -14,7 +14,6 @@ var terriaOptions = {
 // checkBrowserCompatibility('ui');
 import GoogleAnalytics from 'leylinesjs/lib/Core/GoogleAnalytics';
 import ShareDataService from 'leylinesjs/lib/Models/ShareDataService';
-import OgrCatalogItem from 'leylinesjs/lib/Models/OgrCatalogItem';
 import raiseErrorToUser from 'leylinesjs/lib/Models/raiseErrorToUser';
 import registerAnalytics from 'leylinesjs/lib/Models/registerAnalytics';
 import registerCatalogMembers from 'leylinesjs/lib/Models/registerCatalogMembers';
@@ -70,9 +69,6 @@ terria.start({
     raiseErrorToUser(terria, e);
 }).always(function() {
     try {
-        configuration.bingMapsKey = terria.configParameters.bingMapsKey ? terria.configParameters.bingMapsKey : configuration.bingMapsKey;
-        configuration.mapboxApiKey = terria.configParameters.mapboxApiKey ? terria.configParameters.mapboxApiKey : configuration.mapboxApiKey;
-
         viewState.searchState.locationSearchProviders = [
             new BingMapsSearchProviderViewModel({
                 terria: terria,
@@ -89,7 +85,7 @@ terria.start({
         var createGlobalBaseMapOptions = require('leylinesjs/lib/ViewModels/createGlobalBaseMapOptions');
         var selectBaseMap = require('leylinesjs/lib/ViewModels/selectBaseMap');
 
-        var allBaseMaps = createGlobalBaseMapOptions(terria, configuration.bingMapsKey, configuration.mapboxApiKey);
+        var allBaseMaps = createGlobalBaseMapOptions(terria, terria.configParameters.bingMapsKey, terria.configParameters.mapboxApiKey);
         selectBaseMap(terria, allBaseMaps, 'Bing Maps Aerial with Labels', true);
 
         // Show a modal disclaimer before user can do anything else.
