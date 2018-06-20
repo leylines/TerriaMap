@@ -6,7 +6,7 @@ import PanelStyles from 'leylinesjs/lib/ReactViews/Map/Panels/panel.scss';
 import Styles from './donate.scss';
 import classNames from 'classnames';
 
-function RelatedMaps(props) {
+function Donate(props) {
     const dropdownTheme = {
         inner: Styles.dropdownInner
     };
@@ -38,9 +38,9 @@ function RelatedMaps(props) {
     );
 }
 
-RelatedMaps.propTypes = {
-    viewState: React.PropTypes.object.isRequired,
-    smallScreen: React.PropTypes.bool
+Donate.propTypes = {
+    viewState: PropTypes.object.isRequired,
+    smallScreen: PropTypes.bool
 };
 
-export default RelatedMaps;
+export default Donate;
