@@ -41,7 +41,7 @@ gulp.task('inject-files', function(done) {
 gulp.task('make-symlinks', function () {
     gulp.src('node_modules/leylinesjs/wwwroot/doc')
       .pipe(symlink('wwwroot/html/doc',{force: true}))
-    gulp.src('../geo-data')
+    gulp.src('../../geodata')
       .pipe(symlink('wwwroot/geo-data',{force: true}))
     gulp.src('node_modules/leylines-catalog/build')
       .pipe(symlink('wwwroot/init',{force: true}))
