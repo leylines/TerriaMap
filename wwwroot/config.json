@@ -11,6 +11,8 @@
         "googleUrlShortenerKey": null,
         "googleAnalyticsKey": "UA-80868684-1",
         "googleAnalyticsOptions": null,
+        "useCesiumIonTerrain": true,
+        "cesiumIonAccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiY2MyZjMxNS01NjI0LTQ3MjMtOTM3MC01NTZiODZkOTdlZjgiLCJpZCI6MTA3LCJpYXQiOjE1MjU0MjA2ODd9.VX2WAx6oqH1yiSxA7heQYax9jhq_p1gBtd1IrRHKzko",
         /* Text that appears at the bottom of the map */
         "disclaimer": {
             "text": "Disclaimer: leylines.ch must not be used for navigation or precise spatial analysis",
