@@ -37,10 +37,11 @@
             //prodHostRegex: "gov.\\.au$",
             //devHostRegex: "\\b(staging|preview|test|dev)\\.",
             enableOnLocalhost: true // If false, don't show this when running on localhost
-        },*/
+        }, */
+        
         developerAttribution: {
-            "text": "Joerg Roth",
-            "link": "http://www.leylines.ch"
+            text: "Joerg Roth",
+            link: "http://www.leylines.ch"
         },
         // This is used in various text messages. You should also set <title> in index.html
         appName: "leylines",
