@@ -42,7 +42,7 @@ gulp.task('make-symlinks', function () {
     gulp.src('node_modules/leylinesjs/wwwroot/doc')
       .pipe(symlink('wwwroot/html/doc',{force: true}))
     gulp.src('../../geodata')
-      .pipe(symlink('wwwroot/geo-data',{force: true}))
+      .pipe(symlink('wwwroot/geodata',{force: true}))
     gulp.src('node_modules/leylines-catalog/build')
       .pipe(symlink('wwwroot/init',{force: true}))
     return;
