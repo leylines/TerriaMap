@@ -176,13 +176,14 @@ gulp.task('make-package', function(done) {
 
     fs.mkdirSync(workingDir);
 
-    var copyOptions = {
-        preserveTimestamps: true
-    };
-
-    fs.copySync('wwwroot', path.join(workingDir, 'wwwroot'), copyOptions);
-    fs.copySync('node_modules', path.join(workingDir, 'node_modules'), copyOptions);
-    fs.copySync('deploy/varnish', path.join(workingDir, 'varnish'), copyOptions);
+    fs.copySync('wwwroot', path.join(workingDir, 'wwwroot'));
+    fs.copySync('node_modules', path.join(workingDir, 'node_modules'));
+    if (fs.existsSync('proxyauth.json')) {
+        fs.copySync('proxyauth.json', path.join(workingDir, 'proxyauth.json'));
+    }
+    fs.copySync('deploy/varnish', path.join(workingDir, 'varnish'));
+    fs.copySync('ecosystem.config.js', path.join(workingDir, 'ecosystem.config.js'));
+    fs.copySync('ecosystem-production.config.js', path.join(workingDir, 'ecosystem-production.config.js'));
 
     if (argv.serverConfigOverride) {
         var serverConfig = json5.parse(fs.readFileSync('devserverconfig.json', 'utf8'));
