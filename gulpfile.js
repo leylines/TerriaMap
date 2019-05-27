@@ -21,22 +21,22 @@ gulp.task('inject-files', function(done) {
             '../leylines-helper/images/**'
         ], { base: '../leylines-helper/images' })
     .pipe(gulp.dest('wwwroot/images'));
-    return;
+    done();
 });
 
-gulp.task('make-symlinks', function () {
-    gulp.src('node_modules/leylinesjs/wwwroot/doc')
-      .pipe(symlink('wwwroot/html/doc',{force: true}))
+gulp.task('make-symlinks', function (done) {
+    gulp.src('../leylines-doc/wwwroot/doc')
+      .pipe(gulp.symlink('wwwroot/html',{relativeSymlinks: true, overwrite: true}))
     gulp.src('../../geodata')
-      .pipe(symlink('wwwroot/geodata',{force: true}))
-    gulp.src('node_modules/leylines-catalog/build')
-      .pipe(symlink('wwwroot/init',{force: true}))
-    return;
+      .pipe(gulp.symlink('wwwroot',{relativeSymlinks: true, overwrite: true}))
+    gulp.src('../leylines-catalog/init',{relativeSymlinks: true, overwrite: true})
+      .pipe(gulp.symlink('wwwroot'))
+    done();
 });
 
 gulp.task('check-terriajs-dependencies', function(done) {
     var appPackageJson = require('./package.json');
-    var terriaPackageJson = require('terriajs/package.json');
+    var terriaPackageJson = require('leylinesjs/package.json');
 
     syncDependencies(appPackageJson.dependencies, terriaPackageJson, true);
     syncDependencies(appPackageJson.devDependencies, terriaPackageJson, true);
@@ -139,7 +139,7 @@ gulp.task('make-editor-schema', gulp.series('copy-editor', function makeEditorSc
     });
 }));
 
-gulp.task('lint', function() {
+gulp.task('lint', function(done) {
     var runExternalModule = require('leylinesjs/buildprocess/runExternalModule');
 
     runExternalModule('eslint/bin/eslint.js', [
@@ -354,4 +354,4 @@ function checkForDuplicateCesium() {
 gulp.task('build', gulp.series('render-datasource-templates', 'copy-terriajs-assets', 'build-app'));
 gulp.task('release', gulp.series('render-datasource-templates', 'copy-terriajs-assets', 'release-app', 'make-editor-schema'));
 gulp.task('watch', gulp.parallel('watch-datasource-templates', 'watch-terriajs-assets', 'watch-app'));
-gulp.task('default', gulp.series('lint', 'build'));
+gulp.task('default', gulp.series('make-symlinks', 'inject-files', 'lint', 'build'));
