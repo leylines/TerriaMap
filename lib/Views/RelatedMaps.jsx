@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 import MenuPanel from 'leylinesjs/lib/ReactViews/StandardUserInterface/customizable/MenuPanel.jsx';
 import PanelStyles from 'leylinesjs/lib/ReactViews/Map/Panels/panel.scss';
@@ -42,11 +42,12 @@ function RelatedMaps(props) {
             </div>
         </MenuPanel>
     );
+
 }
 
 RelatedMaps.propTypes = {
-    viewState: PropTypes.object.isRequired,
-    smallScreen: PropTypes.bool
+  viewState: PropTypes.object.isRequired,
+  smallScreen: PropTypes.bool
 };
 
 export default RelatedMaps;

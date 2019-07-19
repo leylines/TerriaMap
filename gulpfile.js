@@ -189,9 +189,9 @@ gulp.task('make-package', function(done) {
         var serverConfig = json5.parse(fs.readFileSync('devserverconfig.json', 'utf8'));
         var serverConfigOverride = json5.parse(fs.readFileSync(argv.serverConfigOverride, 'utf8'));
         var productionServerConfig = mergeConfigs(serverConfig, serverConfigOverride);
-        fs.writeFileSync(path.join(workingDir, 'productionserverconfig.json'), JSON.stringify(productionServerConfig, undefined, '  '));
+        fs.writeFileSync(path.join(workingDir, '../leylines-config/serverconfig.json'), JSON.stringify(productionServerConfig, undefined, '  '));
     } else {
-        fs.writeFileSync(path.join(workingDir, 'productionserverconfig.json'), fs.readFileSync('devserverconfig.json', 'utf8'));
+        fs.writeFileSync(path.join(workingDir, '../leylines-config/serverconfig.json'), fs.readFileSync('../leylines-config/serverconfig.json', 'utf8'));
     }
 
     if (argv.clientConfigOverride) {
