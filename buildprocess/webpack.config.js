@@ -100,7 +100,7 @@ module.exports = function(devMode, hot) {
             ]
         },
         plugins: [
-            new MiniCssExtractPlugin({filename: "leylines.css.css", disable: hot, ignoreOrder: true, allChunks: true})
+            new MiniCssExtractPlugin({filename: "leylines.css", disable: hot, ignoreOrder: true, allChunks: true})
         ],
        resolve: {
             alias: {},
