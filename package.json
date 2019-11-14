@@ -1,5 +1,5 @@
 {
-  "name": "leylinesMap",
+  "name": "leylines-map",
   "version": "2.0.0",
   "description": "Geospatial catalog explorer based on TerriaJS for maps.leylines.ch",
   "license": "Apache-2.0",
