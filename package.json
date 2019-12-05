@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "pm2": "^3.2.2",
-    "leylines-server": "git://github.com/leylines/leylines-server.git#master"
+    "leylines-server": "3.1.0"
   },
   "config": {
     "awsProfile": "terria",
