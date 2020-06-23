@@ -4,8 +4,6 @@
         "leylines"
     ],
     parameters: {
-        "bingMapsKey": "Ar2EmKvPSqMPwjLanIEHgtO-r8h0cBPrP2D0Rx_Ejqy22LvRl4UvqZor1xSTtq4G",
-        "mapboxApiKey": "pk.eyJ1IjoibGV5bGluZXMiLCJhIjoiY2o1ajh2ZDB4Mmd6aTJxcDhuYzIwdXB4ciJ9.ReIEsCklhxnotFEp4_OHrw",
         "urthecastApiKey": "CDF7911468AF4C92BBA1",
         "urthecastApiSecret": "540EB50E9E5A4C11916656568DA47F21",
         "googleUrlShortenerKey": null,
@@ -41,7 +39,7 @@
         
         developerAttribution: {
             text: "Joerg Roth",
-            link: "http://www.leylines.ch"
+            link: "http://www.leylines.net"
         },
         // This is used in various text messages. You should also set <title> in index.html
         appName: "leylines",
