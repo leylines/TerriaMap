@@ -1,4 +1,3 @@
-For instructions on how to deploy your map, see [the documentation here](doc/deploying/deploying-to-aws.md).
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
