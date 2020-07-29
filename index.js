@@ -3,7 +3,7 @@
 /*global require,window */
 
 var terriaOptions = {
-    baseUrl: 'build/TerriaJS'
+    baseUrl: 'build/LeylinesJS'
 };
 
 // Check browser compatibility early on.
