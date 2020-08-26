@@ -354,4 +354,4 @@ function checkForDuplicateCesium() {
 gulp.task('build', gulp.series('render-datasource-templates', 'copy-terriajs-assets', 'build-app'));
 gulp.task('release', gulp.series('render-datasource-templates', 'copy-terriajs-assets', 'release-app', 'make-editor-schema'));
 gulp.task('watch', gulp.parallel('watch-datasource-templates', 'watch-terriajs-assets', 'watch-app'));
-gulp.task('default', gulp.series('make-symlinks', 'inject-files', 'lint', 'build'));
+gulp.task('default', gulp.series('make-symlinks', 'inject-files', 'lint', 'release'));

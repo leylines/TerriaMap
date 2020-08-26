@@ -12,6 +12,8 @@ datasources/00_National_Data_Sets.json
 /terriajs.pid
 /terriajs-server.log
 commands.sh
+package-lock.json
+yarn.lock
 
 /wwwroot/editor/
 
